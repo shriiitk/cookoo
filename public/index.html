@@ -3,34 +3,50 @@
 
 <!-- ASSIGN OUR ANGULAR MODULE -->
 <html ng-app="cookoo">
+
 <head>
-	<!-- META -->
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+    <!-- META -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Optimize mobile viewport -->
 
-	<title>What to cook?</title>
+    <title>What to cook?</title>
 
-	<!-- SCROLLS -->
-	<link rel="stylesheet" href="css/style.css">
-	<link rel="stylesheet" href="css/bootstrap.min.css"><!-- load bootstrap -->
-	<style>
-		html 					{ overflow-y:scroll; }
-		body 					{ padding-top:70px; }
-		#todo-list 				{ margin-bottom:30px; }
-	</style>
+    <!-- SCROLLS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- load bootstrap -->
+    <style>
+    html {
+        overflow-y:scroll;
+        text-transform:uppercase;
+    }
+    body {
+        padding-top:50px;
+    }
+    #todo-list {
+        margin-bottom:30px;
+    }
+    </style>
 
-	<!-- SPELLS -->
-	<script src="js/lib/jquery-2.0.3.min.js"></script><!-- load jquery -->
-	<script src="js/lib/angular-1.2.4.min.js"></script><!-- load angular -->
-	<script src="js/controllers/main.js"></script> <!-- load up our controller -->
-	<script src="js/services/recipes.js"></script> <!-- load our recipe service -->
-	<script src="js/core.js"></script> <!-- load our main application -->
+    <!-- SPELLS -->
+    <script src="js/lib/jquery-2.0.3.min.js"></script>
+    <!-- load jquery -->
+    <script src="js/lib/angular-1.2.4.min.js"></script>
+    <!-- load angular -->
+    <script src="js/controllers/main.js"></script>
+    <!-- load up our controller -->
+    <script src="js/services/recipes.js"></script>
+    <!-- load our recipe service -->
+    <script src="js/core.js"></script>
+    <!-- load our main application -->
 
 </head>
 <!-- SET THE CONTROLLER AND GET ALL Recipes -->
+
 <body ng-controller="mainController">
-	<!-- navigation panel -->
-    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <!-- navigation panel -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -43,7 +59,7 @@
                 <a class="navbar-brand" href="#">What to cook?</a>
             </div>
 
-            <div class="collapse navbar-collapse" id="navbar-collapse-main">
+            <div class="collapse navbar-collapse" id="navbar-collapse-main" style="width: 95%;">
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#home">Home</a>
                     </li>
@@ -53,7 +69,7 @@
                     </li>
                     <li><a href="#information">Information</a>
                     </li>
-                    <li><a href="#google_map">Contact</a>
+                    <li><a href="#contact">Contact</a>
                     </li>
                 </ul>
             </div>
@@ -63,10 +79,10 @@
     </nav>
     <!-- first section - Home -->
     <div id="home" class="home">
-        <div class="text-vcenter">
+        <div class="text-vcenter" style="color:ivory;">
             <h1>Hello Foodie!</h1>
             <h3>Want to cook something new?</h3>
-            <a href="#about" class="btn btn-default btn-lg">Yes!!!</a>
+            <a href="#about" class="btn btn-info btn-lg">Yes!!!</a>
         </div>
     </div>
     <!-- /first section -->
@@ -74,20 +90,22 @@
     <!-- second section - About -->
     <div id="about" class="pad-section">
         <div class="container">
-        	<div id="todo-form" class="row">
-				<div class="col-sm-8 col-sm-offset-2 text-center">
-					<form>
-						<div class="form-group">
+            <h2 class="text-center">What do you have?</h2>
+            <br>
+            <div id="todo-form" class="row">
+                <div class="col-sm-8 col-sm-offset-2 text-center">
+                    <form>
+                        <div class="form-group">
 
-							<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
-							<input type="text" class="form-control input-lg text-center" placeholder="Paneer Eggs Capsicum Butter" ng-model="formData.text">
-						</div>
+                            <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
+                            <input type="text" class="form-control input-lg text-center" placeholder="Paneer Eggs Capsicum Butter" ng-model="formData.text">
+                        </div>
 
-						<!-- createToDo() WILL CREATE NEW TODOS -->
-						<button type="submit" class="btn btn-primary btn-lg" ng-click="createTodo()">Search Recipes</button>
-					</form>
-				</div>
-			</div>
+                        <!-- createToDo() WILL CREATE NEW TODOS -->
+                        <button type="submit" class="btn btn-info btn-lg" ng-click="searchRecipes()">Search Recipes</button>
+                    </form>
+                </div>
+            </div>
             <!-- <div class="row">
                 <div class="col-sm-6">
                     <img src="./index_files/images/logo.png" alt="">
@@ -106,18 +124,13 @@
         <div class="container">
             <h2 class="text-center">Suggestions</h2>
             <hr>
-            <div id="todo-list" class="row">
-				<div class="col-sm-4 col-sm-offset-4">
-
-					<!-- LOOP OVER THE recipes IN $scope.recipes -->
-					<div class="checkbox" ng-repeat="recipe in recipes">
-						<label>
-							<input type="checkbox" ng-click="deleteTodo(recipe._id)"> {{ recipe.title }}
-						</label>
-					</div>
-
-				</div>
-			</div>
+            <div class="row text-center">
+                <div class="col-sm-3 col-xs-6" ng-repeat="recipe in recipes">
+                    <i class="glyphicon glyphicon-cutlery"> </i>
+                    <h4>{{ recipe.title }}</h4>
+                    <!-- <p>{{ recipe.tags }}</p> -->
+                </div>
+            </div>
         </div>
     </div>
     <!-- /third section -->
@@ -129,7 +142,7 @@
                 <div class="col-sm-6">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h2 class="panel-title">Additional information</h2>
+                            <h2 class="panel-title">Top Searches</h2>
                         </div>
                         <div class="panel-body lead">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed hendrerit adipiscing blandit. Aliquam placerat, velit a fermentum fermentum, mi felis vehicula justo, a dapibus quam augue non massa. Duis euismod, augue et tempus consequat, lorem mauris porttitor quam, consequat ultricies mauris mi a metus. Phasellus congue, leo sed ultricies tristique, nunc libero tempor ligula, at varius mi nibh in nisi. Aliquam erat volutpat. Maecenas rhoncus, neque facilisis rhoncus tempus, elit ligula varius dui, quis amet.
@@ -139,10 +152,14 @@
                 <div class="col-sm-6">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h2 class="panel-title">Additional information</h2>
+                            <h2 class="panel-title">Top Recipes</h2>
                         </div>
                         <div class="panel-body lead">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed hendrerit adipiscing blandit. Aliquam placerat, velit a fermentum fermentum, mi felis vehicula justo, a dapibus quam augue non massa. Duis euismod, augue et tempus consequat, lorem mauris porttitor quam, consequat ultricies mauris mi a metus. Phasellus congue, leo sed ultricies tristique, nunc libero tempor ligula, at varius mi nibh in nisi. Aliquam erat volutpat. Maecenas rhoncus, neque facilisis rhoncus tempus, elit ligula varius dui, quis amet.
+                            <div class="list-group">
+                                <a href="#{{ recipe._id }}" class="list-group-item" ng-repeat="recipe in recipes">
+							  	{{ recipe.title }}
+							  </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -152,12 +169,12 @@
     <!-- /fourth section -->
 
     <!-- fifth section -->
-    <div id="services" class="pad-section">
+    <div id="contact" class="pad-section">
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 text-center">
-                    <h3>Parallax scrolling effect is in action</h3>
-                    <h4>The next is the address on Google maps</h4>
+                    <h2>DISCLAIMER</h2>
+                    <h4>All of our content in the form of images or background we display because we believe the content was “public domain”. Wallpaper that displayed are from unknown origin, and we do not intend to infringe any legitimate intellectual, artistic rights or copyright. If you are the legitimate owner of the one of the content we display here, and do not want us to show, then please contact us and we will immediately take any action is needed either remove the wallpaper. All of the content we display are free to download and therefore we do not acquire good financial gains at all or any of the content.</h4>
                 </div>
             </div>
         </div>
@@ -173,4 +190,5 @@
     </footer>
     <!-- /footer -->
 </body>
+
 </html>
