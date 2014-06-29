@@ -8,5 +8,8 @@
     "express": "~3.4.4",
     "mongoose": "~3.6.2",
     "mongoose-text-search": "0.0.2"
-  }
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
 }
