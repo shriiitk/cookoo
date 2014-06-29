@@ -13,6 +13,25 @@ angular.module('recipeController', [])
 				console.log(data);
 				$scope.recipes = data;
 			});
+
+		$scope.searchRecipes = function() {
+			console.log("Searching");
+			// validate the formData to make sure that something is there
+			// if form is empty, nothing will happen
+			// people can't just hold enter to keep adding the same to-do anymore
+			if (!$.isEmptyObject($scope.formData)) {
+				console.log("FORMDATA", $scope.formData);
+				// call the search function from our service (returns a promise object)
+				Recipes.search($scope.formData.text)
+
+					// if successful creation, call our get function to get all the new todos
+					.success(function(data) {
+						console.log("DATA", data);
+						$scope.formData = {}; // clear the form so our user is ready to enter another
+						$scope.recipes = data; // assign our new list of todos
+					});
+			}
+		};
 		/*
 		// CREATE ==================================================================
 		// when submitting the add form, send the text to the node API

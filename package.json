@@ -1,12 +1,12 @@
-
-  {
-  "name"         : "cookoo",
-  "version"      : "0.0.0",
-  "description"  : "Cooking suggestion application.",
-  "main"         : "server.js",
-  "author"       : "Scotch",
-  "dependencies" : {
-    "express"    : "~3.4.4",
-    "mongoose"   : "~3.6.2"
-    }
+{
+  "name": "cookoo",
+  "version": "0.0.0",
+  "description": "Cooking suggestion application.",
+  "main": "server.js",
+  "author": "Scotch",
+  "dependencies": {
+    "express": "~3.4.4",
+    "mongoose": "~3.6.2",
+    "mongoose-text-search": "0.0.2"
   }
+}

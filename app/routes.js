@@ -5,11 +5,12 @@ var Recipe = require('./models/recipe');
 
 
 // api ---------------------------------------------------------------------
-// get all recipes
+// get 10 recipes
 app.get('/api/recipes', function(req, res) {
 
 	// use mongoose to get all recipes in the database
-	Recipe.find(function(err, recipes) {
+	var q = Recipe.find({}).limit(12);
+	q.exec(function(err, recipes) {
 
 		// if there is an error retrieving, send the error. nothing after res.send(err) will execute
 		if (err){
@@ -20,6 +21,28 @@ app.get('/api/recipes', function(req, res) {
 		res.json(recipes); // return all recipes in JSON format
 	});
 });
+
+app.get('/api/recipes/search', function(req, res) {
+
+	var q = req.query.q;
+	var sort = req.query.sort;
+	var start = req.query.start;
+	var rows = req.query.rows;
+
+	Recipe.textSearch(q, function (err, output) {
+		if (err){
+			console.log(err);
+			res.send(err);
+		}
+		console.log(output);
+		var list = [];
+		for (var i = output.results.length - 1; i >= 0; i--) {
+			list.push(output.results[i].obj);
+		};
+		res.json(list);
+	});
+});
+
 /*
 // create todo and send back all todos after creation
 app.post('/api/todos', function(req, res) {

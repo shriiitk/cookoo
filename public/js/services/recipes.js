@@ -6,6 +6,9 @@ angular.module('recipeService', [])
 		return {
 			get : function() {
 				return $http.get('/api/recipes');
+			},
+			search : function(q, sort, start, rows) {
+				return $http.get('/api/recipes/search?q='+q);
 			}/*,
 			create : function(todoData) {
 				return $http.post('/api/todos', todoData);

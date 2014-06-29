@@ -1,10 +1,11 @@
 // server.js
 
 // set up ========================
-var express  = require('express');
-var app      = module.exports = express(); 								// create our app w/ express
-var mongoose = require('mongoose'); 					// mongoose for mongodb
-var port     = process.env.PORT || 8000; 
+var express    = require('express');
+var app        = module.exports = express(); 			// create our app w/ express
+var mongoose   = require('mongoose');					// mongoose for mongodb
+var textSearch = require('mongoose-text-search');
+var port       = process.env.PORT || 8000; 
 
 // configuration =================
 var database = require('./config/database');
