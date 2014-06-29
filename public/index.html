@@ -14,7 +14,7 @@
 
     <!-- SCROLLS -->
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap.darkly.min.css">
     <!-- load bootstrap -->
     <style>
     html {
@@ -46,7 +46,7 @@
 
 <body ng-controller="mainController">
     <!-- navigation panel -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -59,7 +59,7 @@
                 <a class="navbar-brand" href="#">What to cook?</a>
             </div>
 
-            <div class="collapse navbar-collapse" id="navbar-collapse-main" style="width: 95%;">
+            <div class="collapse navbar-collapse" id="navbar-collapse-main">
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#home">Home</a>
                     </li>
@@ -82,8 +82,12 @@
         <div class="text-vcenter" style="color:ivory;">
             <h1>Hello Foodie!</h1>
             <h3>Want to cook something new?</h3>
-            <a href="#about" class="btn btn-info btn-lg">Yes!!!</a>
+            <a href="#about" class="btn btn-success btn-lg">Yes!!!</a>
         </div>
+        <a href="index.html#explore" class="scrollto">
+			<p>SCROLL DOWN TO EXPLORE</p>
+			<p class="scrollto--arrow"><img src="images/scroll_down.png" alt="scroll down arrow"></p>
+		</a>
     </div>
     <!-- /first section -->
 
@@ -174,7 +178,7 @@
             <div class="row">
                 <div class="col-sm-12 text-center">
                     <h2>DISCLAIMER</h2>
-                    <h4>All of our content in the form of images or background we display because we believe the content was “public domain”. Wallpaper that displayed are from unknown origin, and we do not intend to infringe any legitimate intellectual, artistic rights or copyright. If you are the legitimate owner of the one of the content we display here, and do not want us to show, then please contact us and we will immediately take any action is needed either remove the wallpaper. All of the content we display are free to download and therefore we do not acquire good financial gains at all or any of the content.</h4>
+                    <h5>All of our content in the form of images or background we display because we believe the content was “public domain”. We do not intend to infringe any legitimate intellectual, artistic rights or copyright. If you are the legitimate owner of the one of the content we display here, and do not want us to show, then please contact us and we will immediately take any action is needed either remove the wallpaper. All of the content we display are free to download and therefore we do not acquire good financial gains at all or any of the content.</h5>
                 </div>
             </div>
         </div>
@@ -185,7 +189,10 @@
     <footer>
         <hr>
         <div class="container">
-            <p class="text-right">Copyright © Shashank & Gesu 2014</p>
+            <div class="row">
+        		<p class="text-right">Copyright © Shashank & Gesu 2014</p>
+        		<p class="text-left">Powered by <a href="http://www.mongodb.com/">MongoDB</a>, <a href="http://expressjs.com/">ExpressJS</a>, <a href="https://angularjs.org/">AngularJS</a>, <a href="http://nodejs.org/">NodeJS</a> & <a href="http://getbootstrap.com/">Bootstrap</a></p>
+        	</div>
         </div>
     </footer>
     <!-- /footer -->
