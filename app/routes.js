@@ -9,7 +9,7 @@ var Recipe = require('./models/recipe');
 app.get('/api/recipes', function(req, res) {
 
 	// use mongoose to get all recipes in the database
-	var q = Recipe.find({}).limit(12);
+	var q = Recipe.find({}).sort({ _id : "desc"}).limit(12);
 	q.exec(function(err, recipes) {
 
 		// if there is an error retrieving, send the error. nothing after res.send(err) will execute
