@@ -61,6 +61,7 @@ html {
     background: url(../images/veggies2.jpg) no-repeat center center fixed;
     display: table;
     height: 800px;
+    z-index:-1;
     position: relative;
     width: 100%;
     -webkit-background-size: cover;
