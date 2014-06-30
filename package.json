@@ -1,9 +1,9 @@
 {
   "name": "cookoo",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Cooking suggestion application.",
   "main": "server.js",
-  "author": "Scotch",
+  "author": "Shashank",
   "dependencies": {
     "express": "~3.4.4",
     "mongoose": "~3.6.2",
@@ -11,5 +11,8 @@
   },
   "scripts": {
     "start": "node server.js"
+  },
+  "engines": {
+    "node": "0.10.x"
   }
 }
