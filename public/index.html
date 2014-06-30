@@ -66,15 +66,15 @@
 
             <div class="collapse navbar-collapse" id="navbar-collapse-main">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#home">Home</a>
+                    <li><a href="#home" target="_self">Home</a>
                     </li>
-                    <li><a href="#about">Search</a>
+                    <li><a href="#about" target="_self">Search</a>
                     </li>
-                    <li><a href="#services">Suggestions</a>
+                    <li><a href="#services" target="_self">Suggestions</a>
                     </li>
-                    <li><a href="#information">Information</a>
+                    <li><a href="#information" target="_self">Information</a>
                     </li>
-                    <li><a href="#contact">Contact</a>
+                    <li><a href="#contact" target="_self">Contact</a>
                     </li>
                 </ul>
             </div>
@@ -87,7 +87,7 @@
         <div class="text-vcenter" style="color:ivory;">
             <h1>Hello Foodie!</h1>
             <h3>Want to cook something new?</h3>
-            <a href="#about" class="btn btn-success btn-lg">Yes!!!</a>
+            <a href="#about" class="btn btn-success btn-lg" target="_self">Yes!!!</a>
         </div>
         <a href="index.html#about" class="scrollto">
 			<p>SCROLL DOWN TO EXPLORE</p>
@@ -109,8 +109,8 @@
                             <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
                             <input type="text" class="form-control input-lg text-center" placeholder="Paneer Eggs Capsicum Butter" ng-model="formData.text">
                         </div>
-
-                        <button type="submit" class="btn btn-info btn-lg" ng-click="searchRecipes()">Search Recipes</button>
+                        <a href="#services" class="btn btn-success btn-lg" target="_self" ng-click="searchRecipes()">Search {{ formData.text }} Recipes</a>
+                        <!-- <button type="submit" class="btn btn-info btn-lg" ng-click="searchRecipes()">Search Recipes</button> -->
                     </form>
                 </div>
             </div>
