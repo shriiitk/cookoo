@@ -7,6 +7,9 @@ angular.module('recipeService', [])
 			get : function() {
 				return $http.get('/api/recipes');
 			},
+			top : function(count) {
+				return $http.get('/api/recipes/top/'+count);
+			},
 			search : function(q, sort, start, rows) {
 				return $http.get('/api/recipes/search?q='+q);
 			}/*,

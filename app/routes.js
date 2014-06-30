@@ -5,11 +5,30 @@ var Recipe = require('./models/recipe');
 
 
 // api ---------------------------------------------------------------------
-// get 10 recipes
+// get 12 recipes
 app.get('/api/recipes', function(req, res) {
 
 	// use mongoose to get all recipes in the database
 	var q = Recipe.find({}).sort({ _id : "desc"}).limit(12);
+	q.exec(function(err, recipes) {
+
+		// if there is an error retrieving, send the error. nothing after res.send(err) will execute
+		if (err){
+			console.log(err);
+			res.send(err);
+		}
+
+		res.json(recipes); // return all recipes in JSON format
+	});
+});
+
+// get 10 recipes
+app.get('/api/recipes/top/:count', function(req, res) {
+
+	// use mongoose to get all recipes in the database
+	var limit = req.params.count;
+	// TODO: better top results query
+	var q = Recipe.find({}).limit(limit);
 	q.exec(function(err, recipes) {
 
 		// if there is an error retrieving, send the error. nothing after res.send(err) will execute
@@ -29,14 +48,17 @@ app.get('/api/recipes/search', function(req, res) {
 	var start = req.query.start;
 	var rows = req.query.rows;
 
-	Recipe.textSearch(q, function (err, output) {
+	var options = {
+	    limit: 8
+	}
+	Recipe.textSearch(q, options, function (err, output) {
 		if (err){
 			console.log(err);
 			res.send(err);
 		}
 		console.log(output);
 		var list = [];
-		for (var i = output.results.length - 1; i >= 0; i--) {
+		for (var i = 0; i < output.results.length; i++) {
 			list.push(output.results[i].obj);
 		};
 		res.json(list);

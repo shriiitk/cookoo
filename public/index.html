@@ -33,6 +33,11 @@
     <script src="js/lib/jquery-2.0.3.min.js"></script>
     <!-- load jquery -->
     <script src="js/lib/angular-1.2.4.min.js"></script>
+    <script src="js/lib/angular-route.min.js"></script>
+    <script src="js/lib/angular-animate.min.js"></script>
+    <!--script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular-route.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular-animate.js"></script-->
     <!-- load angular -->
     <script src="js/controllers/main.js"></script>
     <!-- load up our controller -->
@@ -105,7 +110,6 @@
                             <input type="text" class="form-control input-lg text-center" placeholder="Paneer Eggs Capsicum Butter" ng-model="formData.text">
                         </div>
 
-                        <!-- createToDo() WILL CREATE NEW TODOS -->
                         <button type="submit" class="btn btn-info btn-lg" ng-click="searchRecipes()">Search Recipes</button>
                     </form>
                 </div>
@@ -126,14 +130,14 @@
     <!-- third section - Services -->
     <div id="services" class="pad-section">
         <div class="container">
-            <h2 class="text-center">Suggestions</h2>
+            <h2 class="text-center">Suggestions {{ formData.text }}</h2>
             <hr>
-            <div class="row text-center">
-                <div class="col-sm-3 col-xs-6" ng-repeat="recipe in recipes">
+            <div class="row text-center" ng-view>
+                <!-- <div class="col-sm-3 col-xs-6" ng-repeat="recipe in recipes">
                     <i class="glyphicon glyphicon-cutlery"> </i>
                     <h5 style="white-space: nowrap;width: 100%;overflow: hidden;text-overflow: ellipsis;">{{ recipe.title }}</h5>
-                    <!-- <p>{{ recipe.tags }}</p> -->
-                </div>
+                    <p>{{ recipe.tags }}</p>
+                </div> -->
             </div>
         </div>
     </div>
@@ -160,7 +164,7 @@
                         </div>
                         <div class="panel-body lead">
                             <div class="list-group">
-                                <a href="#{{ recipe._id }}" class="list-group-item" ng-repeat="recipe in recipes">
+                                <a href="#{{ recipe._id }}" class="list-group-item" ng-repeat="recipe in top">
 							  	{{ recipe.title }}
 							  </a>
                             </div>

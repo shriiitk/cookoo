@@ -1,17 +1,27 @@
 // js/controllers/main.js
 angular.module('recipeController', [])
 
-	// inject the Todo service factory into our controller
-	.controller('mainController', function($scope, $http, Recipes) {
+	// inject the Recipe service factory into our controller
+	.controller('mainController', function($scope, $http, $location, Recipes) {
 		$scope.formData = {};
 
+		$scope.goNext = function (hash) { 
+			$location.path(hash);
+		}
+
 		// GET =====================================================================
-		// when landing on the page, get all todos and show them
-		// use the service to get all the todos
+		// when landing on the page, get all recipes and show them
+		// use the service to get all the recipes
 		Recipes.get()
 			.success(function(data) {
-				console.log(data);
+				console.log(data.length);
 				$scope.recipes = data;
+			});
+
+		Recipes.top(8)
+			.success(function(topdata) {
+				console.log(topdata);
+				$scope.top = topdata;
 			});
 
 		$scope.searchRecipes = function() {
@@ -24,11 +34,12 @@ angular.module('recipeController', [])
 				// call the search function from our service (returns a promise object)
 				Recipes.search($scope.formData.text)
 
-					// if successful creation, call our get function to get all the new todos
+					// if successful creation, call our get function to get all the new recipes
 					.success(function(data) {
 						console.log("DATA", data);
 						$scope.formData = {}; // clear the form so our user is ready to enter another
-						$scope.recipes = data; // assign our new list of todos
+						$scope.searchResults = data; // assign our new list of recipes
+						$scope.goNext("/search");
 					});
 			}
 		};
