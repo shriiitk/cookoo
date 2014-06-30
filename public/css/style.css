@@ -16,6 +16,9 @@ html {
 .pad-section img {
     width: 100%;
 }
+#contact a, #contact a:hover, #contact a:visited{
+    color: #375a7f;
+}
 /* vertical-centered text */
  .text-vcenter {
     display: table-cell;
