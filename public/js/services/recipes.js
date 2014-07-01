@@ -12,7 +12,16 @@ angular.module('recipeService', [])
 			},
 			search : function(q, sort, start, rows) {
 				return $http.get('/api/recipes/search?q='+q);
-			}/*,
+			},
+			contactus	: function(jsondata) {
+				return $http({
+			        method  : 'POST',
+			        url     : '/api/email/contactus',
+			        data    : jsondata,  // pass in data as strings
+			        headers : { 'Content-Type': 'application/json' }
+			    });
+			}
+			/*,
 			create : function(todoData) {
 				return $http.post('/api/todos', todoData);
 			},

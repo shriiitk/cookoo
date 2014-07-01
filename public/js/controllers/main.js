@@ -43,6 +43,24 @@ angular.module('recipeController', [])
 					});
 			}
 		};
+
+		// process the form
+		$scope.processForm = function() {
+			Recipes.contactus(JSON.stringify($scope.formData))
+				.success(function(data) {
+					console.log(data);
+
+		            if (!data.success) {
+		            	// if not successful, bind errors to error variables
+		                $scope.errorName = data.errors.name;
+		                $scope.errorEmail = data.errors.email;
+		                $scope.errorText = data.errors.errorText;
+		            } else {
+		            	// if successful, bind success message to message
+		                $scope.message = data.message;
+		            }
+				});
+		};
 		/*
 		// CREATE ==================================================================
 		// when submitting the add form, send the text to the node API

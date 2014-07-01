@@ -180,7 +180,40 @@
     <div id="contact" class="pad-section">
         <div class="container">
             <div class="row">
-                <div class="col-sm-12 text-center">
+                <div class="col-sm-6">
+                    <!-- SHOW ERROR/SUCCESS MESSAGES -->
+                    <div id="messages" class="well" ng-show="message">{{ message }}</div>
+
+                    <!-- FORM -->
+                    <form ng-submit="processForm()">
+                        <!-- NAME -->
+                        <div id="name-group" class="form-group" ng-class="{ 'has-error' : errorName }">
+                            <label>Name</label>
+                            <input type="text" name="name" class="form-control" placeholder="Bruce Wayne" ng-model="formData.name"/>
+                            <span class="help-block" ng-show="errorName">{{ errorName }}</span>
+                        </div>
+
+                        <!-- Email -->
+                        <div id="email-group" class="form-group" ng-class="{ 'has-error' : errorEmail }">
+                            <label>Email</label>
+                            <input type="text" name="email" class="form-control" placeholder="Bruce.Wayne@Gotham.com" ng-model="formData.email"/>
+                            <span class="help-block" ng-show="errorEmail">{{ errorEmail }}</span>
+                        </div>
+
+                        <!-- Message -->
+                        <div id="text-group" class="form-group" ng-class="{ 'has-error' : errorText }">
+                            <label>Message</label>
+                            <textarea name="text" class="form-control" placeholder="Its awesome!" ng-model="formData.text" rows="3"></textarea>
+                            <span class="help-block" ng-show="errorText">{{ errorText }}</span>
+                        </div>
+
+                        <!-- SUBMIT BUTTON -->
+                        <button type="submit" class="btn btn-primary btn-lg btn-block">
+                            <span class="glyphicon glyphicon-flash"></span> Submit!
+                        </button>
+                    </form>
+                </div>
+                <div class="col-sm-6 text-center">
                     <h2>DISCLAIMER</h2>
                     <h5>All of our content in the form of images or background we display because we believe the content was “public domain”. We do not intend to infringe any legitimate intellectual, artistic rights or copyright. If you are the legitimate owner of the one of the content we display here, and do not want us to show, then please <a href="mailto:sarla.halal@gmail.com">contact us</a> and we will immediately take any action is needed either remove the wallpaper. All of the content we display are free to download and therefore we do not acquire good financial gains at all or any of the content.</h5>
                 </div>

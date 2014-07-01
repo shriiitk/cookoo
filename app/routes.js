@@ -78,7 +78,7 @@ app.get('/api/recipes/search', function(req, res) {
 
 app.post('/api/email/contactus', function(req, res) {
 	var data = req.body;
-
+	console.log("Going to send data", data);
 	if(data.text != undefined && data.text.trim() != ""){
 		var mailOptions = {
 		    from 	: "Sarla Halal ✔ <sarla.halal@gmail.com>", // sender address
@@ -88,7 +88,7 @@ app.post('/api/email/contactus', function(req, res) {
 		    html 	: data.text, // html body
 		    generateTextFromHTML : true
 		};
-
+		console.log("Using mailOptions ", mailOptions);
 		// send mail with defined transport object
 		smtpTransport.sendMail(mailOptions, function(error, response){
 			var msg = '';
