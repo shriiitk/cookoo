@@ -181,6 +181,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-6">
+                    <h2 class="text-center">Contact Us</h2>
                     <!-- SHOW ERROR/SUCCESS MESSAGES -->
                     <div id="messages" class="well" ng-show="message">{{ message }}</div>
 
@@ -189,21 +190,21 @@
                         <!-- NAME -->
                         <div id="name-group" class="form-group" ng-class="{ 'has-error' : errorName }">
                             <label>Name</label>
-                            <input type="text" name="name" class="form-control" placeholder="Bruce Wayne" ng-model="contactFormData.name"/>
+                            <input type="text" name="name" class="form-control" placeholder="Amitabh Bachchan" ng-model="contactFormData.name"/>
                             <span class="help-block" ng-show="errorName">{{ errorName }}</span>
                         </div>
 
                         <!-- Email -->
                         <div id="email-group" class="form-group" ng-class="{ 'has-error' : errorEmail }">
                             <label>Email</label>
-                            <input type="text" name="email" class="form-control" placeholder="Bruce.Wayne@Gotham.com" ng-model="contactFormData.email"/>
+                            <input type="text" name="email" class="form-control" placeholder="Amitabh.bachchan@bollywood.com" ng-model="contactFormData.email"/>
                             <span class="help-block" ng-show="errorEmail">{{ errorEmail }}</span>
                         </div>
 
                         <!-- Message -->
                         <div id="text-group" class="form-group" ng-class="{ 'has-error' : errorText }">
                             <label>Message</label>
-                            <textarea name="text" class="form-control" placeholder="Its awesome!" ng-model="contactFormData.text" rows="3"></textarea>
+                            <textarea name="text" class="form-control" placeholder="This website is awesome!" ng-model="contactFormData.text" rows="3"></textarea>
                             <span class="help-block" ng-show="errorText">{{ errorText }}</span>
                         </div>
 
