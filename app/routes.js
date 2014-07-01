@@ -111,6 +111,7 @@ app.post('/api/email/contactus', function(req, res) {
 			msg.success = false;
 			msg.text = "Validation Failure";
 			res.send(msg);
+			return;
 		}
 		// send mail with defined transport object
 		smtpTransport.sendMail(mailOptions, function(error, response){
