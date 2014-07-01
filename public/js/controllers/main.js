@@ -59,9 +59,9 @@ angular.module('recipeController', [])
 		            	// if successful, bind success message to message
 		                $scope.message = data.text;
 		                $scope.contactFormData = {};
-		                $scope.errorName = {};
-		                $scope.errorEmail = {};
-		                $scope.errorText = {};
+		                $scope.errorName = "";
+		                $scope.errorEmail = "";
+		                $scope.errorText = "";
 		            }
 				})
 				.error(function(data, status, headers, config) {
