@@ -124,7 +124,7 @@ app.post('/api/email/contactus', function(req, res) {
 		    }else{
 		        console.log("Message sent: " + response.message);
 		        msg.success = true;
-		        msg.text = "Success";
+		        msg.text = "Message sent Successfuly";
 		    }
 		    console.log("Sending response", msg);
 		    res.send(msg);
