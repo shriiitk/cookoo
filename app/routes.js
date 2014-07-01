@@ -3,6 +3,17 @@ var app = require('../server');
 // var Tags = require('./models/recipe');
 var Recipe = require('./models/recipe');
 
+var nodemailer = require("nodemailer");
+var emailConfig	= require('../config/email');
+
+// create reusable transport method (opens pool of SMTP connections)
+var smtpTransport = nodemailer.createTransport("SMTP",{
+    service: emailConfig.service,
+    auth: {
+        user: emailConfig.usr,
+        pass: emailConfig.pwd
+    }
+});
 
 // api ---------------------------------------------------------------------
 // get 12 recipes
@@ -63,6 +74,34 @@ app.get('/api/recipes/search', function(req, res) {
 		};
 		res.json(list);
 	});
+});
+
+app.post('/api/email/contactus', function(req, res) {
+	var data = req.body;
+
+	if(data.text != undefined && data.text.trim() != ""){
+		var mailOptions = {
+		    from 	: "Sarla Halal ✔ <sarla.halal@gmail.com>", // sender address
+		    replyTo : data.email,
+		    to 		: "shri.iitk@com", // list of receivers
+		    subject : "Somebody contacted you", // Subject line
+		    html 	: data.text, // html body
+		    generateTextFromHTML : true
+		};
+
+		// send mail with defined transport object
+		smtpTransport.sendMail(mailOptions, function(error, response){
+			var msg = '';
+		    if(error){
+		        console.log(error);
+		        msg = error;
+		    }else{
+		        console.log("Message sent: " + response.message);
+		        msg = "Success";
+		    }
+		    res.send(msg);
+		});
+	}
 });
 
 /*
