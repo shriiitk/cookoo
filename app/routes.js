@@ -85,20 +85,47 @@ app.post('/api/email/contactus', function(req, res) {
 		    replyTo : data.email,
 		    to 		: "shri.iitk@gmail.com", // list of receivers
 		    subject : "Somebody contacted you", // Subject line
-		    html 	: data.text, // html body
+		    html 	: data.name+" said: </br>"+data.text, // html body
 		    generateTextFromHTML : true
 		};
 		console.log("Using mailOptions ", mailOptions);
+		var msg = {};
+		msg.errors = {};
+		// Emailid validation regex
+		var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+		if(data.name.trim().length < 5){
+			msg.errors.status = true;
+			msg.errors.name = "Name length must be more than 5 letters";
+		}
+		if(data.text.trim().length < 10){
+			msg.errors.status = true;
+			msg.errors.errorText = "Message length must be more than 10 letters";
+		}
+		if(!re.test(data.email)){
+			msg.errors.status = true;
+			msg.errors.email = "Invalid email address";
+		}
+
+		if(msg.errors.status){
+			msg.success = false;
+			msg.text = "Validation Failure";
+			res.send(msg);
+		}
 		// send mail with defined transport object
 		smtpTransport.sendMail(mailOptions, function(error, response){
-			var msg = '';
+			
 		    if(error){
 		        console.log(error);
-		        msg = error;
+		        //res.status(error.status || 500);
+		        msg.success = false;
+		        msg.text = "Error sending message : "+JSON.stringify(error.code);
 		    }else{
 		        console.log("Message sent: " + response.message);
-		        msg = "Success";
+		        msg.success = true;
+		        msg.text = "Success";
 		    }
+		    console.log("Sending response", msg);
 		    res.send(msg);
 		});
 	}

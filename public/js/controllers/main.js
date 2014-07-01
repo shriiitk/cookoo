@@ -46,19 +46,23 @@ angular.module('recipeController', [])
 
 		// process the form
 		$scope.processForm = function() {
-			Recipes.contactus(JSON.stringify($scope.formData))
-				.success(function(data) {
-					console.log(data);
-
+			Recipes.contactus(JSON.stringify($scope.contactFormData))
+				.success(function(data, status, headers, config) {
+					console.log("data is ",data, status, headers, config);
 		            if (!data.success) {
 		            	// if not successful, bind errors to error variables
 		                $scope.errorName = data.errors.name;
 		                $scope.errorEmail = data.errors.email;
 		                $scope.errorText = data.errors.errorText;
+		                $scope.message = data.text;
 		            } else {
 		            	// if successful, bind success message to message
-		                $scope.message = data.message;
+		                $scope.message = data.text;
+		                $scope.contactFormData = {};
 		            }
+				})
+				.error(function(data, status, headers, config) {
+					console.log("Error found", data, status, headers, config);
 				});
 		};
 		/*

@@ -189,21 +189,21 @@
                         <!-- NAME -->
                         <div id="name-group" class="form-group" ng-class="{ 'has-error' : errorName }">
                             <label>Name</label>
-                            <input type="text" name="name" class="form-control" placeholder="Bruce Wayne" ng-model="formData.name"/>
+                            <input type="text" name="name" class="form-control" placeholder="Bruce Wayne" ng-model="contactFormData.name"/>
                             <span class="help-block" ng-show="errorName">{{ errorName }}</span>
                         </div>
 
                         <!-- Email -->
                         <div id="email-group" class="form-group" ng-class="{ 'has-error' : errorEmail }">
                             <label>Email</label>
-                            <input type="text" name="email" class="form-control" placeholder="Bruce.Wayne@Gotham.com" ng-model="formData.email"/>
+                            <input type="text" name="email" class="form-control" placeholder="Bruce.Wayne@Gotham.com" ng-model="contactFormData.email"/>
                             <span class="help-block" ng-show="errorEmail">{{ errorEmail }}</span>
                         </div>
 
                         <!-- Message -->
                         <div id="text-group" class="form-group" ng-class="{ 'has-error' : errorText }">
                             <label>Message</label>
-                            <textarea name="text" class="form-control" placeholder="Its awesome!" ng-model="formData.text" rows="3"></textarea>
+                            <textarea name="text" class="form-control" placeholder="Its awesome!" ng-model="contactFormData.text" rows="3"></textarea>
                             <span class="help-block" ng-show="errorText">{{ errorText }}</span>
                         </div>
 
