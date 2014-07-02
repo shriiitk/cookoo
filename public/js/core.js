@@ -3,7 +3,7 @@ var app = angular.module('cookoo', ['recipeController', 'recipeService', 'ngRout
 // ROUTING ===============================================
 // set our routing for this application
 // each route will pull in a different controller
-app.config(function($routeProvider) {
+app.config(function($routeProvider, $locationProvider) {
 
     $routeProvider
 
@@ -12,9 +12,9 @@ app.config(function($routeProvider) {
     		templateUrl	: "partials/results.html",
             controller 	: "mainController"
     	})
-    	.when("/search", {
+    	.when("/search/:q", {
     		templateUrl	: "partials/search.html",
-            controller 	: "mainController"
+            controller 	: "searchController"
     	})
     	.otherwise({
 		    redirectTo: "/"
@@ -32,6 +32,7 @@ app.config(function($routeProvider) {
             controller: 'contactController'
     	})
     	;*/
+        // $locationProvider.html5Mode(true);
 
 });
 

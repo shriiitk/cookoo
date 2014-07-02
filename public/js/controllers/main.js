@@ -1,15 +1,28 @@
 // js/controllers/main.js
-angular.module('recipeController', [])
+var controllerModule = angular.module('recipeController', [])
 
 	// inject the Recipe service factory into our controller
-	.controller('mainController', function($scope, $http, $location, $rootScope, $window, Recipes) {
+controllerModule.controller('mainController', function($scope, $http, $location, $anchorScroll, $window, Recipes) {
 		$scope.formData = {};
 
 		var prevPath = '';
 
 		$scope.goNext = function (hash) { 
-			$location.path(hash);
-		}
+			$location.path(hash).replace();
+			$scope.$apply();
+		};
+
+		//be sure to inject $scope and $location somewhere before this
+		$scope.changeLocation = function(url, force) {
+		  //this will mark the URL change
+		  $location.path(url); //use $location.path(url).replace() if you want to replace the location instead
+
+		  $scope = $scope || angular.element(document).scope();
+		  if(force || !$scope.$$phase) {
+		    //this will kickstart angular if to notice the change
+		    $scope.$apply();
+		  }
+		};
 
 		$scope.$on('$viewContentLoaded', function(event) {
 			console.log("viewContentLoaded",$location.path(), event);
@@ -49,16 +62,26 @@ angular.module('recipeController', [])
 			// people can't just hold enter to keep adding the same to-do anymore
 			if (!$.isEmptyObject($scope.formData)) {
 				console.log("FORMDATA", $scope.formData);
-				// call the search function from our service (returns a promise object)
-				Recipes.search($scope.formData.text)
+				console.log("location=",$location);
+				console.log("/search/"+$scope.formData.text);
+				// set the location.hash to the id of
+			    // the element you wish to scroll to.
+			    $location.hash('results');
 
-					// if successful creation, call our get function to get all the new recipes
-					.success(function(data) {
-						console.log("DATA", data);
-						$scope.formData = {}; // clear the form so our user is ready to enter another
-						$scope.searchResults = data; // assign our new list of recipes
-						$scope.goNext("/search");
-					});
+			    // call $anchorScroll()
+			    $anchorScroll();
+				//$scope.goNext("/search/"+$scope.formData.text);
+				$scope.changeLocation("/search/"+$scope.formData.text);
+				// call the search function from our service (returns a promise object)
+				// Recipes.search($scope.formData.text)
+
+				// 	// if successful creation, call our get function to get all the new recipes
+				// 	.success(function(data) {
+				// 		console.log("DATA", data, $scope.formData.text);
+				// 		$scope.formData = {}; // clear the form so our user is ready to enter another
+				// 		$scope.searchResults = data; // assign our new list of recipes
+				// 		$scope.goNext("/search/"+$scope.formData.text);
+				// 	});
 			}
 		};
 
@@ -118,3 +141,15 @@ angular.module('recipeController', [])
 		};
 		*/
 	});
+
+controllerModule.controller('searchController', function($scope, $http, $location, $rootScope, $window, Recipes) {
+	console.log("$scope is",$scope);
+	Recipes.search($scope.formData.text)
+		// if successful creation, call our get function to get all the new recipes
+		.success(function(data) {
+			console.log("DATA", data);
+			$scope.formData = {}; // clear the form so our user is ready to enter another
+			$scope.searchResults = data; // assign our new list of recipes
+			// $scope.goNext("/search");
+		});
+});

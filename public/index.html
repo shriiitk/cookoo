@@ -45,7 +45,7 @@
     <!-- load our recipe service -->
     <script src="js/core.js"></script>
     <!-- load our main application -->
-
+    <base href="/">
 </head>
 <!-- SET THE CONTROLLER AND GET ALL Recipes -->
 
@@ -68,11 +68,11 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#home" target="_self">Home</a>
                     </li>
-                    <li><a href="#about" target="_self">Search</a>
+                    <li><a href="#search" target="_self">Search</a>
                     </li>
-                    <li><a href="#services" target="_self">Suggestions</a>
+                    <li><a href="#results" target="_self">Recipes</a>
                     </li>
-                    <li><a href="#information" target="_self">Information</a>
+                    <li><a href="#popular" target="_self">Popular</a>
                     </li>
                     <li><a href="#contact" target="_self">Contact</a>
                     </li>
@@ -87,17 +87,17 @@
         <div class="text-vcenter" style="color:ivory;">
             <h1>Hello Foodie!</h1>
             <h3>Want to cook something new?</h3>
-            <a href="#about" class="btn btn-success btn-lg" target="_self">Yes!!!</a>
+            <a href="#search" class="btn btn-success btn-lg" target="_self">Yes!!!</a>
         </div>
-        <a href="index.html#about" class="scrollto">
+        <a href="index.html#search" class="scrollto">
 			<p>SCROLL DOWN TO EXPLORE</p>
 			<p class="scrollto--arrow"><img src="images/scroll_down.png" alt="scroll down arrow"></p>
 		</a>
     </div>
     <!-- /first section -->
 
-    <!-- second section - About -->
-    <div id="about" class="pad-section">
+    <!-- second section - search -->
+    <div id="search" class="pad-section">
         <div class="container">
             <h2 class="text-center">What do you have?</h2>
             <br>
@@ -109,7 +109,7 @@
                             <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
                             <input type="text" class="form-control input-lg text-center" placeholder="Paneer Eggs Capsicum Butter" ng-model="formData.text">
                         </div>
-                        <a href="#services" class="btn btn-success btn-lg" target="_self" ng-click="searchRecipes()">Search {{ formData.text }} Recipes</a>
+                        <a class="btn btn-success btn-lg" target="_self" ng-click="searchRecipes()">Search {{ formData.text }} Recipes</a>
                         <!-- <button type="submit" class="btn btn-info btn-lg" ng-click="searchRecipes()">Search Recipes</button> -->
                     </form>
                 </div>
@@ -128,9 +128,9 @@
     <!-- /second section -->
 
     <!-- third section - Services -->
-    <div id="services" class="pad-section">
+    <div id="results" class="pad-section">
         <div class="container">
-            <h2 class="text-center">Suggestions {{ formData.text }}</h2>
+            <h2 class="text-center"> {{ formData.text }} Recipes</h2>
             <hr>
             <div class="row text-center" ng-view>
                 <!-- <div class="col-sm-3 col-xs-6" ng-repeat="recipe in recipes">
@@ -143,8 +143,8 @@
     </div>
     <!-- /third section -->
 
-    <!-- fourth section - Information -->
-    <div id="information" class="pad-section">
+    <!-- fourth section - popular -->
+    <div id="popular" class="pad-section">
         <div class="container">
             <div class="row">
                 <div class="col-sm-6">

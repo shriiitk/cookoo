@@ -43,13 +43,11 @@ html {
     -o-background-size: cover;
     background-size: cover;
 }
-#about {
-}
-#services, #contact {
+#results, #contact {
     background-color: #0ce3ac;
     color: #ffffff;
 }
-#services .glyphicon {
+#results .glyphicon {
     border: 2px solid #FFFFFF;
     border-radius: 50%;
     display: inline-block;
@@ -60,7 +58,7 @@ html {
     vertical-align: middle;
     width: 140px;
 }
-#information {
+#popular {
     background: url(../images/veggies2.jpg) no-repeat center center fixed;
     display: table;
     height: 800px;
@@ -72,7 +70,7 @@ html {
     -o-background-size: cover;
     background-size: cover;
 }
-#information .panel {
+#popular .panel {
     opacity: 0.85;
 }
 #google_map {
