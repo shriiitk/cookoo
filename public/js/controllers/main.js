@@ -2,12 +2,30 @@
 angular.module('recipeController', [])
 
 	// inject the Recipe service factory into our controller
-	.controller('mainController', function($scope, $http, $location, Recipes) {
+	.controller('mainController', function($scope, $http, $location, $rootScope, $window, Recipes) {
 		$scope.formData = {};
+
+		var prevPath = '';
 
 		$scope.goNext = function (hash) { 
 			$location.path(hash);
 		}
+
+		$scope.$on('$viewContentLoaded', function(event) {
+			console.log("viewContentLoaded",$location.path(), event);
+			// TODO: Need better way to check if it is firing only once per action
+			if($location.path() != prevPath){
+				console.log("prevPath="+prevPath+" & location.path()="+$location.path())
+				$window.ga('send', 'pageview', { page: $location.path() });
+				prevPath = $location.path();
+			}
+		});
+
+
+		// $rootScope.$on('$routeChangeSuccess', function(event, curr, prev) {
+		// 	console.log("routeChangeSuccess", $location.path(), event, curr, prev);
+		// 	$window.ga('send', 'pageview', { page: $location.path() });
+		// });
 
 		// GET =====================================================================
 		// when landing on the page, get all recipes and show them
