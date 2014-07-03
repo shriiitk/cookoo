@@ -20,7 +20,7 @@ var smtpTransport = nodemailer.createTransport("SMTP",{
 app.get('/api/recipes', function(req, res) {
 
 	// use mongoose to get all recipes in the database
-	var q = Recipe.find({}).sort({ _id : "desc"}).limit(12);
+	var q = Recipe.find({}).sort({ _id : "desc"}).select('_id title').limit(12);
 	q.exec(function(err, recipes) {
 
 		// if there is an error retrieving, send the error. nothing after res.send(err) will execute
@@ -38,7 +38,7 @@ app.get('/api/recipes/top/:count', function(req, res) {
 	// use mongoose to get all recipes in the database
 	var limit = req.params.count;
 	// TODO: better top results query
-	var q = Recipe.find({}).sort({instructions:-1}).limit(limit*2);
+	var q = Recipe.find({}).sort({instructions:-1}).select('title').limit(limit*2);
 	q.exec(function(err, recipes) {
 
 		// if there is an error retrieving, send the error. nothing after res.send(err) will execute
@@ -60,7 +60,7 @@ app.get('/api/tags/top/:count', function(req, res) {
 	// use mongoose to get all tags in the database
 	var limit = req.params.count;
 	// TODO: better top results query
-	var q = Tag.find({}).limit(limit);
+	var q = Tag.find({}).select('title').limit(limit);
 	q.exec(function(err, tags) {
 
 		// if there is an error retrieving, send the error. nothing after res.send(err) will execute

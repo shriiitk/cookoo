@@ -25,11 +25,14 @@ controllerModule.controller('mainController', function($scope, $http, $location,
 		};
 
 		$scope.$on('$viewContentLoaded', function(event) {
-			console.log("viewContentLoaded",$location.path(), event);
+			console.log("viewContentLoaded",$location.path());
 			// TODO: Need better way to check if it is firing only once per action
 			if($location.path() != prevPath){
 				console.log("prevPath="+prevPath+" & location.path()="+$location.path())
 				$window.ga('send', 'pageview', { page: $location.path() });
+				if($location.absUrl().indexOf("search")){
+					$window.ga('send', 'event', 'search', 'click', 'path', $location.path());
+				}
 				prevPath = $location.path();
 			}
 		});
