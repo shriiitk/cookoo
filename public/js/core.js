@@ -35,21 +35,3 @@ app.config(function($routeProvider, $locationProvider) {
         // $locationProvider.html5Mode(true);
 
 });
-
-/*
-// CONTROLLERS ============================================
-// home page controller
-animateApp.controller('mainController', function($scope) {
-    $scope.pageClass = 'page-home';
-});
-
-// about page controller
-animateApp.controller('aboutController', function($scope) {
-    $scope.pageClass = 'page-about';
-});
-
-// contact page controller
-animateApp.controller('contactController', function($scope) {
-    $scope.pageClass = 'page-contact';
-});
-*/

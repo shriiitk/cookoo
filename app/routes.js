@@ -1,6 +1,6 @@
 var app = require('../server');
 // load the todo model
-// var Tags = require('./models/recipe');
+var Tag = require('./models/tag');
 var Recipe = require('./models/recipe');
 
 var nodemailer = require("nodemailer");
@@ -33,13 +33,12 @@ app.get('/api/recipes', function(req, res) {
 	});
 });
 
-// get 10 recipes
 app.get('/api/recipes/top/:count', function(req, res) {
 
 	// use mongoose to get all recipes in the database
 	var limit = req.params.count;
 	// TODO: better top results query
-	var q = Recipe.find({}).limit(limit);
+	var q = Recipe.find({}).sort({instructions:-1}).limit(limit*2);
 	q.exec(function(err, recipes) {
 
 		// if there is an error retrieving, send the error. nothing after res.send(err) will execute
@@ -47,8 +46,34 @@ app.get('/api/recipes/top/:count', function(req, res) {
 			console.log(err);
 			res.send(err);
 		}
+		var randomPicks = [];
+		for(var i=0; i<limit; i++){
+			randomPicks.push(recipes[Math.floor(Math.random() * recipes.length)]);
+		}
+		console.log("recipe randomPicks are",randomPicks);
+		res.json(randomPicks); // return all recipes in JSON format
+	});
+});
 
-		res.json(recipes); // return all recipes in JSON format
+app.get('/api/tags/top/:count', function(req, res) {
+
+	// use mongoose to get all tags in the database
+	var limit = req.params.count;
+	// TODO: better top results query
+	var q = Tag.find({}).limit(limit);
+	q.exec(function(err, tags) {
+
+		// if there is an error retrieving, send the error. nothing after res.send(err) will execute
+		if (err){
+			console.log(err);
+			res.send(err);
+		}
+		var randomPicks = [];
+		for(var i=0; i<limit; i++){
+			randomPicks.push(tags[Math.floor(Math.random() * tags.length)]);
+		}
+		console.log("tag randomPicks are",randomPicks);
+		res.json(randomPicks); // return all tags in JSON format
 	});
 });
 

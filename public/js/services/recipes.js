@@ -20,13 +20,9 @@ angular.module('recipeService', [])
 			        data    : jsondata,  // pass in data as strings
 			        headers : { 'Content-Type': 'application/json' }
 			    });
-			}
-			/*,
-			create : function(todoData) {
-				return $http.post('/api/todos', todoData);
 			},
-			delete : function(id) {
-				return $http.delete('/api/todos/' + id);
-			}*/
+			getTags : function(count) {
+				return $http.get('/api/tags/top/'+count);
+			}
 		}
 	});
