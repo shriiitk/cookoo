@@ -50,7 +50,6 @@ app.get('/api/recipes/top/:count', function(req, res) {
 		for(var i=0; i<limit; i++){
 			randomPicks.push(recipes[Math.floor(Math.random() * recipes.length)]);
 		}
-		console.log("recipe randomPicks are",randomPicks);
 		res.json(randomPicks); // return all recipes in JSON format
 	});
 });
@@ -72,7 +71,6 @@ app.get('/api/tags/top/:count', function(req, res) {
 		for(var i=0; i<limit; i++){
 			randomPicks.push(tags[Math.floor(Math.random() * tags.length)]);
 		}
-		console.log("tag randomPicks are",randomPicks);
 		res.json(randomPicks); // return all tags in JSON format
 	});
 });
@@ -92,7 +90,7 @@ app.get('/api/recipes/search', function(req, res) {
 			console.log(err);
 			res.send(err);
 		}
-		console.log(output);
+		// console.log(output);
 		var list = [];
 		for (var i = 0; i < output.results.length; i++) {
 			list.push(output.results[i].obj);
@@ -157,45 +155,6 @@ app.post('/api/email/contactus', function(req, res) {
 	}
 });
 
-/*
-// create todo and send back all todos after creation
-app.post('/api/todos', function(req, res) {
-
-	// create a todo, information comes from AJAX request from Angular
-	Todo.create({
-		text : req.body.text,
-		done : false
-	}, function(err, todo) {
-		if (err)
-			res.send(err);
-
-		// get and return all the todos after you create another
-		Todo.find(function(err, todos) {
-			if (err)
-				res.send(err)
-			res.json(todos);
-		});
-	});
-
-});
-
-// delete a todo
-app.delete('/api/todos/:todo_id', function(req, res) {
-	Todo.remove({
-		_id : req.params.todo_id
-	}, function(err, todo) {
-		if (err)
-			res.send(err);
-
-		// get and return all the todos after you create another
-		Todo.find(function(err, todos) {
-			if (err)
-				res.send(err)
-			res.json(todos);
-		});
-	});
-});
-*/
 // application -------------------------------------------------------------
 app.get('*', function(req, res) {
 	res.sendfile('./public/index.html'); // load the single view file (angular will handle the page changes on the front-end)

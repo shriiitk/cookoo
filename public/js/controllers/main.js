@@ -128,11 +128,18 @@ controllerModule.controller('mainController', function($scope, $http, $location,
 
 controllerModule.controller('searchController', function($scope, $http, $location, $rootScope, $window, Recipes) {
 	console.log("$scope is",$scope);
-	Recipes.search($scope.formData.text)
+	console.log("$location is",$location);
+	var q = $scope.formData.text;
+	if(q == undefined || q === '' ){
+		q = $location.path();
+		q = $scope.formData.text = q.substring(q.lastIndexOf("/")+1);
+	}
+	console.log("Searching "+q);
+	Recipes.search(q)
 		// if successful creation, call our get function to get all the new recipes
 		.success(function(data) {
-			console.log("DATA", data);
-			$scope.formData = {}; // clear the form so our user is ready to enter another
+			//console.log("No of results found : ", data.results.length);
+			//$scope.formData = {}; // clear the form so our user is ready to enter another
 			$scope.searchResults = data; // assign our new list of recipes
 			// $scope.goNext("/search");
 		});
