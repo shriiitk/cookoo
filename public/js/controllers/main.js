@@ -4,7 +4,11 @@ var controllerModule = angular.module('recipeController', [])
 	// inject the Recipe service factory into our controller
 controllerModule.controller('mainController', function($scope, $http, $location, $anchorScroll, $window, Recipes) {
 		$scope.formData = {};
-
+		// We will create an seo variable on the scope and decide which fields we want to populate
+	    $scope.seo = {
+	        pageTitle : 'Recipes to cook',
+	        pageDescription : 'Desicion helper for all foodies who like to cook new recipes'
+	    };
 		var prevPath = '';
 
 		$scope.goNext = function (hash) { 
@@ -132,7 +136,10 @@ controllerModule.controller('searchController', function($scope, $http, $locatio
 	var q = $scope.formData.text;
 	if(q == undefined || q === '' ){
 		q = $location.path();
-		q = $scope.formData.text = q.substring(q.lastIndexOf("/")+1);
+		q = q.substring(q.lastIndexOf("/")+1);
+		if(q != undefined || q != '' ){
+			$scope.formData.text = q;
+		}
 	}
 	console.log("Searching "+q);
 	Recipes.search(q)
