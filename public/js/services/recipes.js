@@ -7,6 +7,12 @@ angular.module('recipeService', [])
 			get : function() {
 				return $http.get('/api/recipes');
 			},
+			findOne : function(id) {
+				return $http.get('/api/recipes/'+id);
+			},
+			getVideos : function(name) {
+				return $http.get('/api/recipes/videos/'+name);
+			},
 			top : function(count) {
 				return $http.get('/api/recipes/top/'+count);
 			},

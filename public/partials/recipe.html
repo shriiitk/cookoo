@@ -1,0 +1,2 @@
+<h3 class="text-center"> {{ recipe.title }}</h3>
+<span style="padding:0.5em;" ng-repeat="tag in recipe.tags"><a class="btn btn-primary btn-sm" role="button" target="_self" ng-click="triggerSearch($event)">{{ tag }}</a></span>

@@ -15,8 +15,43 @@ var smtpTransport = nodemailer.createTransport("SMTP",{
     }
 });
 
+var Youtube = require("youtube-api");
+
+Youtube.authenticate({
+    type: 'key',
+    key: 'AIzaSyA45HAQXBU-ckD_PRwGopKM2022rxTyMVk'
+});
+
 // api ---------------------------------------------------------------------
-// get 12 recipes
+// 
+app.get('/api/recipes/videos/:name', function(req, res) {
+	var name = req.params.name;
+	console.log("Searching youtube for "+name);
+
+	Youtube.search.list({
+	    "part": "id",
+	    "maxResults": 3,
+	    "q": name
+	}, function (err, data) {
+	    console.log(err, JSON.stringify(data));
+	});
+});
+app.get('/api/recipes/:id', function(req, res) {
+	var id = req.params.id;
+	// use mongoose to get specific recipe from the database
+	var q = Recipe.findOne({ '_id': id });
+	q.exec(function(err, recipes) {
+
+		// if there is an error retrieving, send the error. nothing after res.send(err) will execute
+		if (err){
+			console.log(err);
+			res.send(err);
+		}
+		console.log("Found", recipes);
+		res.json(recipes); // return all recipes in JSON format
+	});
+});
+
 app.get('/api/recipes', function(req, res) {
 
 	// use mongoose to get all recipes in the database

@@ -1,5 +1,5 @@
 // js/controllers/main.js
-var controllerModule = angular.module('recipeController', [])
+var controllerModule = angular.module('recipeController', []);
 
 	// inject the Recipe service factory into our controller
 controllerModule.controller('mainController', function($scope, $http, $location, $anchorScroll, $window, Recipes) {
@@ -104,6 +104,11 @@ controllerModule.controller('mainController', function($scope, $http, $location,
 			$scope.searchRecipes();
 		};
 
+		$scope.triggerDetails = function($event) {
+			console.log("triggerDetails", $event.target.title, $event.target.id);
+			$scope.changeLocation("/recipe/"+encodeURIComponent($event.target.title)+"/"+$event.target.id);
+		};
+
 		// process the form
 		$scope.processForm = function() {
 			Recipes.contactus(JSON.stringify($scope.contactFormData))
@@ -151,3 +156,23 @@ controllerModule.controller('searchController', function($scope, $http, $locatio
 			// $scope.goNext("/search");
 		});
 });
+
+controllerModule.controller('detailsController', function($scope, $http, $location, $rootScope, $window, Recipes) {
+	console.log("$location is",$location);
+	var q = $location.path();
+	var id = q.substring(q.lastIndexOf("/")+1);
+	console.log("id is "+id);
+	Recipes.findOne(id)
+		.success(function(data) {
+			console.log("yoohooo", data);
+			$scope.recipe = data; // assign our new list of recipes
+
+			Recipes.getVideos(data.title)
+				.success(function(results) {
+					console.log("youtube", results);
+					$scope.recipe.videos = results; // assign our new list of recipes
+				});
+		});
+});
+
+

@@ -9,7 +9,8 @@
     "mongoose": "~3.6.2",
     "mongoose-text-search": "0.0.2",
     "nodemailer": "^0.7.0",
-    "prerender-node": "latest"
+    "prerender-node": "latest",
+    "youtube-api": "^0.2.2"
   },
   "scripts": {
     "start": "node server.js"
