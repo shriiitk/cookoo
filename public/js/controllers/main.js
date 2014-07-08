@@ -157,7 +157,7 @@ controllerModule.controller('searchController', function($scope, $http, $locatio
 		});
 });
 
-controllerModule.controller('detailsController', function($scope, $http, $location, $rootScope, $window, Recipes) {
+controllerModule.controller('detailsController', function($scope, $http, $location, $rootScope, $window, $sce, Recipes) {
 	console.log("$location is",$location);
 	var q = $location.path();
 	var id = q.substring(q.lastIndexOf("/")+1);
@@ -166,11 +166,17 @@ controllerModule.controller('detailsController', function($scope, $http, $locati
 		.success(function(data) {
 			console.log("yoohooo", data);
 			$scope.recipe = data; // assign our new list of recipes
-
+			console.log("title",data.title);
 			Recipes.getVideos(data.title)
 				.success(function(results) {
 					console.log("youtube", results);
-					$scope.recipe.videos = results; // assign our new list of recipes
+					
+					var videos = [];
+					for(var i=0; i< results.items.length; i++){
+						videos.push($sce.trustAsResourceUrl("http://www.youtube.com/embed/"+results.items[i].id.videoId));
+					}
+					console.log(videos);
+					$scope.videos = videos;
 				});
 		});
 });

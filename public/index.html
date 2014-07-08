@@ -89,10 +89,12 @@
     <div id="home" class="home">
         <div class="text-vcenter" style="color:ivory;">
             <h1>Hello Foodie!</h1>
-            <h3>Want to cook something new?</h3>
+            <h3>Are you spoiled of choices?</h3>
+            <h3>Are you bored of regular food?</h3>
+            <h3>Do you like to cook something new?</h3>
             <a href="#search" class="btn btn-success btn-lg" target="_self">Yes!!!</a>
         </div>
-        <a href="#search" target="_self" class="scrollto">
+        <a href="#!search" target="_self" class="scrollto">
 			<p>SCROLL DOWN TO EXPLORE</p>
 			<p class="scrollto--arrow"><img src="images/scroll_down.png" alt="scroll down arrow"></p>
 		</a>
@@ -102,7 +104,7 @@
     <!-- second section - search -->
     <div id="search" class="pad-section">
         <div class="container">
-            <h2 class="text-center">What do you have?</h2>
+            <h2 class="text-center">What do you have in kitchen?</h2>
             <br>
             <div id="todo-form" class="row">
                 <div class="col-sm-8 col-sm-offset-2 text-center">
@@ -133,7 +135,7 @@
     <!-- third section - Services -->
     <div id="results" class="pad-section">
         <div class="container">
-            <h2 class="text-center"> {{ formData.text }} Recipes</h2>
+            <h1 class="text-center"> {{ formData.text }} Recipes</h1>
             <hr>
             <div class="row text-center" ng-view>
                 <!-- <div class="col-sm-3 col-xs-6" ng-repeat="recipe in recipes">

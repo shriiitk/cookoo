@@ -25,21 +25,22 @@ Youtube.authenticate({
 // api ---------------------------------------------------------------------
 // 
 app.get('/api/recipes/videos/:name', function(req, res) {
-	var name = req.params.name;
+	var name = req.params.name + " recipe";
 	console.log("Searching youtube for "+name);
 
 	Youtube.search.list({
 	    "part": "id",
-	    "maxResults": 3,
+	    "maxResults": 4,
 	    "q": name
 	}, function (err, data) {
 	    console.log(err, JSON.stringify(data));
+	    res.json(data);
 	});
 });
-app.get('/api/recipes/:id', function(req, res) {
+app.get('/api/recipes/details/:id', function(req, res) {
 	var id = req.params.id;
 	// use mongoose to get specific recipe from the database
-	var q = Recipe.findOne({ '_id': id });
+	var q = Recipe.findOne({ '_id': id }).select('_id title tags');
 	q.exec(function(err, recipes) {
 
 		// if there is an error retrieving, send the error. nothing after res.send(err) will execute
@@ -118,14 +119,15 @@ app.get('/api/recipes/search', function(req, res) {
 	var rows = req.query.rows;
 
 	var options = {
-	    limit: 8
+	    limit: 8,
+	    select: "_id title tags"
 	}
 	Recipe.textSearch(q, options, function (err, output) {
 		if (err){
 			console.log(err);
 			res.send(err);
 		}
-		// console.log(output);
+		console.log(output);
 		var list = [];
 		for (var i = 0; i < output.results.length; i++) {
 			list.push(output.results[i].obj);
