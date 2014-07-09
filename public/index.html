@@ -89,20 +89,20 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#!">What to cook?</a>
+                <a class="navbar-brand" ng-click="scrollToLocation('home')">What to cook?</a>
             </div>
 
             <div class="collapse navbar-collapse" id="navbar-collapse-main">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#!home" target="_self">Home</a>
+                    <li><a ng-click="scrollToLocation('home')" target="_self">Home</a>
                     </li>
-                    <li><a href="#search" target="_self">Search</a>
+                    <li><a ng-click="scrollToLocation('search')" target="_self">Search</a>
                     </li>
-                    <li><a href="#results" target="_self">Recipes</a>
+                    <li><a ng-click="scrollToLocation('results')" target="_self">Recipes</a>
                     </li>
-                    <li><a href="#popular" target="_self">Popular</a>
+                    <li><a ng-click="scrollToLocation('popular')" target="_self">Popular</a>
                     </li>
-                    <li><a href="#contact" target="_self">Contact</a>
+                    <li><a ng-click="scrollToLocation('contact')" target="_self">Contact</a>
                     </li>
                 </ul>
             </div>
@@ -118,7 +118,7 @@
             <h3>Are you spoiled of choices?</h3>
             <h3>Are you bored of regular food?</h3>
             <h3>Do you like to cook something new?</h3>
-            <a href="#search" class="btn btn-success btn-lg" target="_self">Yes!!!</a>
+            <a ng-click="scrollToLocation('search')" class="btn btn-success btn-lg" target="_self">Yes!!!</a>
             <br></br>
             <div
               id="fb"
@@ -129,7 +129,7 @@
             </div>
         </div>
 
-        <a href="#!search" target="_self" class="scrollto">
+        <a ng-click="scrollToLocation('search')" target="_self" class="scrollto">
 			<p>SCROLL DOWN TO EXPLORE</p>
 			<p class="scrollto--arrow"><img src="images/scroll_down.png" alt="scroll down arrow"></p>
 		</a>
@@ -149,8 +149,8 @@
                             <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
                             <input type="text" class="form-control input-lg text-center" placeholder="Paneer Eggs Capsicum Butter" ng-model="formData.text" ng-keypress="myFunct($event)">
                         </div>
-                        <a class="btn btn-success btn-lg" href="#results" target="_self" ng-click="searchRecipes()">Search {{ formData.text }} Recipes</a>
-                        <a class="btn btn-warning btn-lg" href="#results" target="_self" ng-click="getRandom()">Pick Random Recipe</a>
+                        <a class="btn btn-success btn-lg"  target="_self" ng-click="searchRecipes()">Search {{ formData.text }} Recipes</a>
+                        <a class="btn btn-warning btn-lg"  target="_self" ng-click="getRandom()">Pick Random Recipe</a>
                         <!-- <button type="submit" class="btn btn-info btn-lg" ng-click="searchRecipes()">Search Recipes</button> -->
                     </form>
                 </div>

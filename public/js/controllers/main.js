@@ -73,6 +73,7 @@ controllerModule.controller('mainController', function($scope, $http, $location,
 			    $location.hash('results');
 			    $anchorScroll();
 				$scope.changeLocation("/search/"+$scope.formData.text);
+				$scope.scrollToLocation("results");
 			}
 		};
 
@@ -80,11 +81,13 @@ controllerModule.controller('mainController', function($scope, $http, $location,
 			console.log("triggerSearch", $event.target.innerText);
 			$scope.formData.text = $event.target.innerText;
 			$scope.searchRecipes();
+			$scope.scrollToLocation("results");
 		};
 
 		$scope.triggerDetails = function($event) {
 			console.log("triggerDetails", $event.target.title, $event.target.id);
 			$scope.changeLocation("/recipe/"+encodeURIComponent($event.target.title)+"/"+$event.target.id);
+			$scope.scrollToLocation("results");
 		};
 
 		$scope.getRandom = function() {
@@ -92,6 +95,7 @@ controllerModule.controller('mainController', function($scope, $http, $location,
 				.success(function(data) {
 					console.log("random data", data);
 					$scope.changeLocation("/recipe/"+encodeURIComponent(data[0].title)+"/"+data[0]._id);
+					$scope.scrollToLocation("results");
 				});
 		};
 		// Trigger seach when enter is pressed
@@ -125,6 +129,13 @@ controllerModule.controller('mainController', function($scope, $http, $location,
 					console.log("Error found", data, status, headers, config);
 				});
 		};
+
+		$scope.scrollToLocation = function(id) {
+			var element = document.getElementById(id);
+			console.log(id, element);
+			var alignWithTop = true;
+			element.scrollIntoView(alignWithTop);
+		}
 	});
 
 controllerModule.controller('searchController', function($scope, $http, $location, $rootScope, $window, Recipes) {
