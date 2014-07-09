@@ -30,6 +30,10 @@
     #todo-list {
         margin-bottom:30px;
     }
+    #fb {
+        padding-top: 2em;
+        padding-left: 70%;
+    }
     </style>
 
     <!-- SPELLS -->
@@ -53,6 +57,23 @@
 <!-- SET THE CONTROLLER AND GET ALL Recipes -->
 
 <body ng-controller="mainController">
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '1443880055882145',
+          xfbml      : true,
+          version    : 'v2.0'
+        });
+      };
+
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/en_US/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+    </script>
     <!-- navigation panel -->
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container-fluid">
@@ -87,13 +108,23 @@
     </nav>
     <!-- first section - Home -->
     <div id="home" class="home">
+        
         <div class="text-vcenter" style="color:ivory;">
             <h1>Hello Foodie!</h1>
             <h3>Are you spoiled of choices?</h3>
             <h3>Are you bored of regular food?</h3>
             <h3>Do you like to cook something new?</h3>
             <a href="#search" class="btn btn-success btn-lg" target="_self">Yes!!!</a>
+            <br></br>
+            <div
+              id="fb"
+              class="fb-like text-vcenter"
+              data-send="true"
+              data-width="450"
+              data-show-faces="true">
+            </div>
         </div>
+
         <a href="#!search" target="_self" class="scrollto">
 			<p>SCROLL DOWN TO EXPLORE</p>
 			<p class="scrollto--arrow"><img src="images/scroll_down.png" alt="scroll down arrow"></p>
