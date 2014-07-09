@@ -109,6 +109,14 @@ controllerModule.controller('mainController', function($scope, $http, $location,
 			$scope.changeLocation("/recipe/"+encodeURIComponent($event.target.title)+"/"+$event.target.id);
 		};
 
+		$scope.getRandom = function() {
+			Recipes.random()
+				.success(function(data) {
+					console.log("random data", data);
+					$scope.changeLocation("/recipe/"+encodeURIComponent(data[0].title)+"/"+data[0]._id);
+				});
+		};
+
 		// process the form
 		$scope.processForm = function() {
 			Recipes.contactus(JSON.stringify($scope.contactFormData))

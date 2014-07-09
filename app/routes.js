@@ -37,6 +37,28 @@ app.get('/api/recipes/videos/:name', function(req, res) {
 	    res.json(data);
 	});
 });
+
+app.get('/api/recipes/random', function(req, res) {
+	var id = req.params.id;
+	Recipe.count({}, function( err, count){
+		if(!err){
+			console.log( "Number of recipes:", count );
+			var randomnumber=Math.floor(Math.random()*count);
+			console.log( "Picking:", randomnumber );
+			var q = Recipe.find({}).select('_id title tags').skip(randomnumber).limit(1);
+			q.exec(function(err, recipes) {
+				if (err){
+					console.log(err);
+					res.send(err);
+				}
+				console.log("recipes", recipes);
+				res.json(recipes); // return all recipes in JSON format
+			});
+		}
+	    
+	})
+});
+
 app.get('/api/recipes/details/:id', function(req, res) {
 	var id = req.params.id;
 	// use mongoose to get specific recipe from the database

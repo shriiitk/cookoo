@@ -10,6 +10,9 @@ angular.module('recipeService', [])
 			findOne : function(id) {
 				return $http.get('/api/recipes/details/'+id);
 			},
+			random : function(id) {
+				return $http.get('/api/recipes/random');
+			},
 			getVideos : function(name) {
 				return $http.get('/api/recipes/videos/'+name);
 			},

@@ -149,20 +149,12 @@
                             <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
                             <input type="text" class="form-control input-lg text-center" placeholder="Paneer Eggs Capsicum Butter" ng-model="formData.text">
                         </div>
-                        <a class="btn btn-success btn-lg" target="_self" ng-click="searchRecipes()">Search {{ formData.text }} Recipes</a>
+                        <a class="btn btn-success btn-lg" href="#results" target="_self" ng-click="searchRecipes()">Search {{ formData.text }} Recipes</a>
+                        <a class="btn btn-success btn-lg" href="#results" target="_self" ng-click="getRandom()">Pick Random Recipe</a>
                         <!-- <button type="submit" class="btn btn-info btn-lg" ng-click="searchRecipes()">Search Recipes</button> -->
                     </form>
                 </div>
             </div>
-            <!-- <div class="row">
-                <div class="col-sm-6">
-                    <img src="./index_files/images/logo.png" alt="">
-                </div>
-                <div class="col-sm-6 text-center">
-                    <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in sem cras amet.</h2>
-                    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed interdum metus et ligula venenatis, at rhoncus nisi molestie. Pellentesque porttitor elit suscipit massa laoreet metus.</p>
-                </div>
-            </div> -->
         </div>
     </div>
     <!-- /second section -->
@@ -173,11 +165,6 @@
             <h1 class="text-center"> {{ formData.text }} Recipes</h1>
             <hr>
             <div class="row text-center" ng-view>
-                <!-- <div class="col-sm-3 col-xs-6" ng-repeat="recipe in recipes">
-                    <i class="glyphicon glyphicon-cutlery"> </i>
-                    <h5 style="white-space: nowrap;width: 100%;overflow: hidden;text-overflow: ellipsis;">{{ recipe.title }}</h5>
-                    <p>{{ recipe.tags }}</p>
-                </div> -->
             </div>
         </div>
     </div>
