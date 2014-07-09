@@ -164,7 +164,7 @@ app.post('/api/email/contactus', function(req, res) {
 		var mailOptions = {
 		    from 	: "Sarla Halal ✔ <sarla.halal@gmail.com>", // sender address
 		    replyTo : data.email,
-		    to 		: "shri.iitk@gmail.com", // list of receivers
+		    to 		: "shri.iitk@gmail.com, gesu.lko@gmail.com, sarla.halal@gmail.com", // list of receivers
 		    subject : "Somebody contacted you", // Subject line
 		    html 	: data.name+" said: </br>"+data.text, // html body
 		    generateTextFromHTML : true
