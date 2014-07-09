@@ -41,12 +41,6 @@ controllerModule.controller('mainController', function($scope, $http, $location,
 			}
 		});
 
-
-		// $rootScope.$on('$routeChangeSuccess', function(event, curr, prev) {
-		// 	console.log("routeChangeSuccess", $location.path(), event, curr, prev);
-		// 	$window.ga('send', 'pageview', { page: $location.path() });
-		// });
-
 		// GET =====================================================================
 		// when landing on the page, get all recipes and show them
 		// use the service to get all the recipes
@@ -74,27 +68,11 @@ controllerModule.controller('mainController', function($scope, $http, $location,
 			// if form is empty, nothing will happen
 			// people can't just hold enter to keep adding the same to-do anymore
 			if (!$.isEmptyObject($scope.formData)) {
-				console.log("FORMDATA", $scope.formData);
-				console.log("location=",$location);
-				console.log("/search/"+$scope.formData.text);
 				// set the location.hash to the id of
 			    // the element you wish to scroll to.
 			    $location.hash('results');
-
-			    // call $anchorScroll()
 			    $anchorScroll();
-				//$scope.goNext("/search/"+$scope.formData.text);
 				$scope.changeLocation("/search/"+$scope.formData.text);
-				// call the search function from our service (returns a promise object)
-				// Recipes.search($scope.formData.text)
-
-				// 	// if successful creation, call our get function to get all the new recipes
-				// 	.success(function(data) {
-				// 		console.log("DATA", data, $scope.formData.text);
-				// 		$scope.formData = {}; // clear the form so our user is ready to enter another
-				// 		$scope.searchResults = data; // assign our new list of recipes
-				// 		$scope.goNext("/search/"+$scope.formData.text);
-				// 	});
 			}
 		};
 
@@ -116,6 +94,12 @@ controllerModule.controller('mainController', function($scope, $http, $location,
 					$scope.changeLocation("/recipe/"+encodeURIComponent(data[0].title)+"/"+data[0]._id);
 				});
 		};
+		// Trigger seach when enter is pressed
+		$scope.myFunct = function(ev) {
+			if (ev.which==13){
+				$scope.searchRecipes();
+			}
+		}
 
 		// process the form
 		$scope.processForm = function() {

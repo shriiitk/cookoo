@@ -149,7 +149,6 @@ app.get('/api/recipes/search', function(req, res) {
 			console.log(err);
 			res.send(err);
 		}
-		console.log(output);
 		var list = [];
 		for (var i = 0; i < output.results.length; i++) {
 			list.push(output.results[i].obj);

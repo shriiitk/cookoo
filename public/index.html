@@ -143,14 +143,14 @@
             <br>
             <div id="todo-form" class="row">
                 <div class="col-sm-8 col-sm-offset-2 text-center">
-                    <form>
+                    <form >
                         <div class="form-group">
 
                             <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
-                            <input type="text" class="form-control input-lg text-center" placeholder="Paneer Eggs Capsicum Butter" ng-model="formData.text">
+                            <input type="text" class="form-control input-lg text-center" placeholder="Paneer Eggs Capsicum Butter" ng-model="formData.text" ng-keypress="myFunct($event)">
                         </div>
                         <a class="btn btn-success btn-lg" href="#results" target="_self" ng-click="searchRecipes()">Search {{ formData.text }} Recipes</a>
-                        <a class="btn btn-success btn-lg" href="#results" target="_self" ng-click="getRandom()">Pick Random Recipe</a>
+                        <a class="btn btn-warning btn-lg" href="#results" target="_self" ng-click="getRandom()">Pick Random Recipe</a>
                         <!-- <button type="submit" class="btn btn-info btn-lg" ng-click="searchRecipes()">Search Recipes</button> -->
                     </form>
                 </div>
