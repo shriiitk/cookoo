@@ -27,11 +27,3 @@ app.config(function($routeProvider, $locationProvider) {
         $locationProvider.hashPrefix('!');
 
 });
-
-// angular.module('cookoo').directive('youtube', function() {
-//   return {
-//     restrict: 'EA',
-//     scope: { code:'@code' },
-//     template: '<div><iframe src="http://www.youtube.com/embed/{{code}}" frameborder="0" allowfullscreen></iframe></div>'
-//   };
-// });

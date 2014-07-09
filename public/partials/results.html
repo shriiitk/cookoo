@@ -1,4 +1,4 @@
 <div class="col-sm-3 col-xs-6" ng-repeat="recipe in recipes">
-    <a href="#results" target="_self" ng-click="triggerDetails($event)"><i class="glyphicon glyphicon-cutlery" style="color:white;" title="{{ recipe.title }}" id="{{ recipe._id }}" > </i></a>
+    <a target="_self" ng-click="triggerDetails($event)"><i class="glyphicon glyphicon-cutlery" style="color:white;" title="{{ recipe.title }}" id="{{ recipe._id }}" > </i></a>
     <h5 style="white-space: nowrap;width: 100%;overflow: hidden;text-overflow: ellipsis;">{{ recipe.title }}</h5>
 </div>

@@ -68,10 +68,6 @@ controllerModule.controller('mainController', function($scope, $http, $location,
 			// if form is empty, nothing will happen
 			// people can't just hold enter to keep adding the same to-do anymore
 			if (!$.isEmptyObject($scope.formData)) {
-				// set the location.hash to the id of
-			    // the element you wish to scroll to.
-			    $location.hash('results');
-			    $anchorScroll();
 				$scope.changeLocation("/search/"+$scope.formData.text);
 				$scope.scrollToLocation("results");
 			}
