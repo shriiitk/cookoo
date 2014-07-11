@@ -46,19 +46,19 @@ controllerModule.controller('mainController', function($scope, $http, $location,
 		// use the service to get all the recipes
 		Recipes.get()
 			.success(function(data) {
-				console.log(data.length);
+				// console.log(data.length);
 				$scope.recipes = data;
 			});
 
 		Recipes.top(8)
 			.success(function(topdata) {
-				console.log(topdata);
+				// console.log(topdata);
 				$scope.top = topdata;
 			});
 
 		Recipes.getTags(20)
 			.success(function(tagdata) {
-				console.log(tagdata);
+				// console.log(tagdata);
 				$scope.tags = tagdata;
 			});
 
@@ -128,15 +128,14 @@ controllerModule.controller('mainController', function($scope, $http, $location,
 
 		$scope.scrollToLocation = function(id) {
 			var element = document.getElementById(id);
-			console.log(id, element);
 			var alignWithTop = true;
 			element.scrollIntoView(alignWithTop);
 		}
 	});
 
 controllerModule.controller('searchController', function($scope, $http, $location, $rootScope, $window, Recipes) {
-	console.log("$scope is",$scope);
-	console.log("$location is",$location);
+	// console.log("$scope is",$scope);
+	// console.log("$location is",$location);
 	var q = $scope.formData.text;
 	if(q == undefined || q === '' ){
 		q = $location.path();
@@ -149,10 +148,8 @@ controllerModule.controller('searchController', function($scope, $http, $locatio
 	Recipes.search(q)
 		// if successful creation, call our get function to get all the new recipes
 		.success(function(data) {
-			//console.log("No of results found : ", data.results.length);
-			//$scope.formData = {}; // clear the form so our user is ready to enter another
 			$scope.searchResults = data; // assign our new list of recipes
-			// $scope.goNext("/search");
+			console.log("Search results", data);
 		});
 });
 

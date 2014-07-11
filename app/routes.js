@@ -142,7 +142,7 @@ app.get('/api/recipes/search', function(req, res) {
 
 	var options = {
 	    limit: 8,
-	    select: "_id title tags"
+	    project: "_id title tags"
 	}
 	Recipe.textSearch(q, options, function (err, output) {
 		if (err){
