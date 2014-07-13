@@ -141,7 +141,7 @@ app.get('/api/recipes/search', function(req, res) {
 	var rows = req.query.rows;
 
 	var options = {
-	    limit: 8,
+	    limit: 16,
 	    project: "_id title tags"
 	}
 	Recipe.textSearch(q, options, function (err, output) {
