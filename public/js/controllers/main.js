@@ -76,6 +76,7 @@ controllerModule.controller('mainController', function($scope, $http, $location,
 		$scope.triggerSearch = function($event) {
 			console.log("triggerSearch", $event.target.innerText);
 			$scope.formData.text = $event.target.innerText;
+			$scope.pageTitle = $scope.formData.text + " Recipes";
 			$scope.searchRecipes();
 			$scope.scrollToLocation("results");
 		};
@@ -84,6 +85,7 @@ controllerModule.controller('mainController', function($scope, $http, $location,
 			console.log("triggerDetails", $event.target.title, $event.target.id);
 			$scope.changeLocation("/recipe/"+encodeURIComponent($event.target.title)+"/"+$event.target.id);
 			$scope.scrollToLocation("results");
+			$scope.pageTitle = $event.target.title + " Recipe";
 		};
 
 		$scope.getRandom = function() {
@@ -144,6 +146,7 @@ controllerModule.controller('searchController', function($scope, $http, $locatio
 			$scope.formData.text = q;
 		}
 	}
+	$scope.pageTitle = q + " Recipes";
 	console.log("Searching "+q);
 	Recipes.search(q)
 		// if successful creation, call our get function to get all the new recipes
@@ -163,6 +166,7 @@ controllerModule.controller('detailsController', function($scope, $http, $locati
 			console.log("yoohooo", data);
 			$scope.recipe = data; // assign our new list of recipes
 			console.log("title",data.title);
+			$scope.pageTitle = data.title + " Recipe";
 			Recipes.getVideos(data.title)
 				.success(function(results) {
 					console.log("youtube", results);
