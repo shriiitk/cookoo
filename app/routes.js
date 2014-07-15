@@ -51,7 +51,7 @@ app.get('/api/recipes/random', function(req, res) {
 					console.log(err);
 					res.send(err);
 				}
-				console.log("recipes", recipes);
+				// console.log("recipes", recipes);
 				res.json(recipes); // return all recipes in JSON format
 			});
 		}
@@ -70,7 +70,7 @@ app.get('/api/recipes/details/:id', function(req, res) {
 			console.log(err);
 			res.send(err);
 		}
-		console.log("Found", recipes);
+		// console.log("Found", recipes);
 		res.json(recipes); // return all recipes in JSON format
 	});
 });
