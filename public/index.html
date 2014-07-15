@@ -54,22 +54,31 @@
 <!-- SET THE CONTROLLER AND GET ALL Recipes -->
 
 <body ng-controller="mainController">
+    <div id="fb-root"></div>
     <script type="text/javascript">
-      window.fbAsyncInit = function() {
-        FB.init({
-          appId      : '1443880055882145',
-          xfbml      : true,
-          version    : 'v2.0'
-        });
-      };
+      // window.fbAsyncInit = function() {
+      //   FB.init({
+      //     appId      : '1443880055882145',
+      //     xfbml      : true,
+      //     version    : 'v2.0'
+      //   });
+      // };
 
-      (function(d, s, id){
-         var js, fjs = d.getElementsByTagName(s)[0];
-         if (d.getElementById(id)) {return;}
-         js = d.createElement(s); js.id = id;
-         js.src = "//connect.facebook.net/en_US/sdk.js";
-         fjs.parentNode.insertBefore(js, fjs);
-       }(document, 'script', 'facebook-jssdk'));
+      // (function(d, s, id){
+      //    var js, fjs = d.getElementsByTagName(s)[0];
+      //    if (d.getElementById(id)) {return;}
+      //    js = d.createElement(s); js.id = id;
+      //    js.src = "//connect.facebook.net/en_US/sdk.js";
+      //    fjs.parentNode.insertBefore(js, fjs);
+      //  }(document, 'script', 'facebook-jssdk'));
+      
+        (function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=1443880055882145&version=v2.0";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
     </script>
     <!-- navigation panel -->
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -105,8 +114,33 @@
     </nav>
     <!-- first section - Home -->
     <div id="home" class="home">
+
+        <div class="row">
+            <div class="col-md-8">
+                <div class="text-vcenter" style="color:ivory;">
+                    <h1>Hello Foodie!</h1>
+                    <h3>Are you spoiled of choices?</h3>
+                    <h3>Are you bored of regular food?</h3>
+                    <h3>Do you like to try new recipes?</h3>
+                    <h3>Do you love Paneer gravies, chicken starters, spicy chinese cuisine, pizza, pasta & biryanis etc?</h3>
+                    <a ng-click="scrollToLocation('search')" class="btn btn-success btn-lg" target="_self">Yes!!!</a>
+                    <br>
+                    
+                    <!-- <div
+                      id="fb"
+                      class="fb-like text-vcenter"
+                      data-send="true"
+                      data-width="450"
+                      data-show-faces="true">
+                    </div> -->
+                </div>
+            </div>
+            <div class="col-md-4" style = "padding: 1em;">
+                <div class="fb-like-box" data-href="https://www.facebook.com/what2cookIndia" data-colorscheme="light" data-show-faces="true" data-header="true" data-stream="false" data-show-border="true" style="background:ivory;margin-top: 40%;"></div>
+            </div>
+        </div>
         
-        <div class="text-vcenter" style="color:ivory;">
+        <!-- <div class="text-vcenter" style="color:ivory;">
             <h1>Hello Foodie!</h1>
             <h3>Are you spoiled of choices?</h3>
             <h3>Are you bored of regular food?</h3>
@@ -114,6 +148,7 @@
             <h3>Do you love Paneer gravies, chicken starters, spicy chinese cuisine, pizza, pasta & biryanis etc?</h3>
             <a ng-click="scrollToLocation('search')" class="btn btn-success btn-lg" target="_self">Yes!!!</a>
             <br>
+            <div class="fb-like-box" data-href="https://www.facebook.com/what2cookIndia" data-colorscheme="light" data-show-faces="true" data-header="true" data-stream="false" data-show-border="true"></div>
             <div
               id="fb"
               class="fb-like text-vcenter"
@@ -126,7 +161,7 @@
         <a ng-click="scrollToLocation('search')" target="_self" class="scrollto">
 			<p>SCROLL DOWN TO EXPLORE</p>
 			<p class="scrollto--arrow"><img src="images/scroll_down.png" alt="scroll down arrow"></p>
-		</a>
+		</a> -->
     </div>
     <!-- /first section -->
 
@@ -174,23 +209,22 @@
                             <h2 class="panel-title">Popular Searches</h2>
                         </div>
                         <div class="panel-body lead">
-                            <!-- <span style="padding:0.5em;" ng-repeat="tag in tags"><a class="btn btn-primary btn-sm" role="button" target="_self" ng-click="triggerSearch($event)">{{ tag.title }}</a></span> -->
-                            <span style="padding:0.5em;" ><a class="btn btn-primary btn-sm" role="button" target="_self" ng-click="triggerSearch($event)">Paneer Tomato</a></span>
-                            <span style="padding:0.5em;" ><a class="btn btn-primary btn-sm" role="button" target="_self" ng-click="triggerSearch($event)">chicken  chilli</a></span>
-                            <span style="padding:0.5em;" ><a class="btn btn-primary btn-sm" role="button" target="_self" ng-click="triggerSearch($event)">Indian chicken gravy</a></span>
-                            <span style="padding:0.5em;" ><a class="btn btn-primary btn-sm" role="button" target="_self" ng-click="triggerSearch($event)">cheese bread</a></span>
+                            <span style="padding:0.5em;" ><a class="btn btn-primary btn-sm" role="button" target="_self" ng-click="triggerSearch($event)">Gosht</a></span>
+                            <span style="padding:0.5em;" ><a class="btn btn-primary btn-sm" role="button" target="_self" ng-click="triggerSearch($event)">Low Calorie</a></span>
+                            <span style="padding:0.5em;" ><a class="btn btn-primary btn-sm" role="button" target="_self" ng-click="triggerSearch($event)">Burger</a></span>
+                            <span style="padding:0.5em;" ><a class="btn btn-primary btn-sm" role="button" target="_self" ng-click="triggerSearch($event)">meat kebab</a></span>
                             <span style="padding:0.5em;" ><a class="btn btn-primary btn-sm" role="button" target="_self" ng-click="triggerSearch($event)">pesto pasta sauce</a></span>
                             <span style="padding:0.5em;" ><a class="btn btn-primary btn-sm" role="button" target="_self" ng-click="triggerSearch($event)">carrot halwa</a></span>
                             <span style="padding:0.5em;" ><a class="btn btn-primary btn-sm" role="button" target="_self" ng-click="triggerSearch($event)">paneer pasanda</a></span>
                             <span style="padding:0.5em;" ><a class="btn btn-primary btn-sm" role="button" target="_self" ng-click="triggerSearch($event)">Indian</a></span>
                             <span style="padding:0.5em;" ><a class="btn btn-primary btn-sm" role="button" target="_self" ng-click="triggerSearch($event)">keema</a></span>
                             <span style="padding:0.5em;" ><a class="btn btn-primary btn-sm" role="button" target="_self" ng-click="triggerSearch($event)">daal chawal rice</a></span>
-                            <span style="padding:0.5em;" ><a class="btn btn-primary btn-sm" role="button" target="_self" ng-click="triggerSearch($event)">mutton liver</a></span>
+                            <span style="padding:0.5em;" ><a class="btn btn-primary btn-sm" role="button" target="_self" ng-click="triggerSearch($event)">Stir fried vegetables</a></span>
                             <span style="padding:0.5em;" ><a class="btn btn-primary btn-sm" role="button" target="_self" ng-click="triggerSearch($event)">papdi chaat</a></span>
                             <span style="padding:0.5em;" ><a class="btn btn-primary btn-sm" role="button" target="_self" ng-click="triggerSearch($event)">bhaji for pav bhaji</a></span>
-                            <span style="padding:0.5em;" ><a class="btn btn-primary btn-sm" role="button" target="_self" ng-click="triggerSearch($event)">ginger garlic</a></span>
+                            <span style="padding:0.5em;" ><a class="btn btn-primary btn-sm" role="button" target="_self" ng-click="triggerSearch($event)">chicken satay peanut sauce</a></span>
                             <span style="padding:0.5em;" ><a class="btn btn-primary btn-sm" role="button" target="_self" ng-click="triggerSearch($event)">ice cream soda</a></span>
-                            <span style="padding:0.5em;" ><a class="btn btn-primary btn-sm" role="button" target="_self" ng-click="triggerSearch($event)">kalonji</a></span>
+                            <span style="padding:0.5em;" ><a class="btn btn-primary btn-sm" role="button" target="_self" ng-click="triggerSearch($event)">green salad</a></span>
                             <span style="padding:0.5em;" ><a class="btn btn-primary btn-sm" role="button" target="_self" ng-click="triggerSearch($event)">pizza base</a></span>
                             <span style="padding:0.5em;" ><a class="btn btn-primary btn-sm" role="button" target="_self" ng-click="triggerSearch($event)">mil rice eggs</a></span>
                             <span style="padding:0.5em;" ><a class="btn btn-primary btn-sm" role="button" target="_self" ng-click="triggerSearch($event)">ragi</a></span>
@@ -203,7 +237,7 @@
                             <span style="padding:0.5em;" ><a class="btn btn-primary btn-sm" role="button" target="_self" ng-click="triggerSearch($event)">masala vada</a></span>
                             <span style="padding:0.5em;" ><a class="btn btn-primary btn-sm" role="button" target="_self" ng-click="triggerSearch($event)">olive oil</a></span>
                             <span style="padding:0.5em;" ><a class="btn btn-primary btn-sm" role="button" target="_self" ng-click="triggerSearch($event)">south indian curry leaves</a></span>
-                            <span style="padding:0.5em;" ><a class="btn btn-primary btn-sm" role="button" target="_self" ng-click="triggerSearch($event)">tomato rice</a></span>
+                            <span style="padding:0.5em;" ><a class="btn btn-primary btn-sm" role="button" target="_self" ng-click="triggerSearch($event)">shrimp fry</a></span>
 
                         </div>
                     </div>

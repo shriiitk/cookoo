@@ -42,6 +42,7 @@ html {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    padding-top: 3em;
 }
 #results, #contact {
     background-color: #0ce3ac;
