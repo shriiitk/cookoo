@@ -40,6 +40,7 @@ app.get('/api/recipes/videos/:name', function(req, res) {
 
 app.get('/api/recipes/random', function(req, res) {
 	var id = req.params.id;
+	console.log("searching random "+id);
 	Recipe.count({}, function( err, count){
 		if(!err){
 			console.log( "Number of recipes:", count );
@@ -54,6 +55,8 @@ app.get('/api/recipes/random', function(req, res) {
 				// console.log("recipes", recipes);
 				res.json(recipes); // return all recipes in JSON format
 			});
+		} else {
+			console.log("error searching random ", err);
 		}
 	    
 	})
