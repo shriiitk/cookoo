@@ -39,7 +39,6 @@ app.get('/api/recipes/videos/:name', function(req, res) {
 });
 
 app.get('/api/recipes/random', function(req, res) {
-	res.setHeader('Last-Modified', (new Date()).toUTCString());
 	Recipe.count({}, function( err, count){
 		if(!err){
 			console.log( "Number of recipes:", count );
@@ -78,7 +77,7 @@ app.get('/api/recipes/details/:id', function(req, res) {
 });
 
 app.get('/api/recipes', function(req, res) {
-	res.setHeader('Last-Modified', (new Date()).toUTCString());
+
 	// use mongoose to get all recipes in the database
 	var q = Recipe.find({}).sort({ _id : "desc"}).select('_id title').limit(12);
 	q.exec(function(err, recipes) {

@@ -5,14 +5,13 @@ angular.module('recipeService', [])
 	.factory('Recipes', function($http) {
 		return {
 			get : function() {
-				return $http.get('/api/recipes');
+				return $http.get('/api/recipes?t='+new Date().getTime());
 			},
 			findOne : function(id) {
 				return $http.get('/api/recipes/details/'+id);
 			},
-			random : function(id) {
-				console.log("calling random service with "+id);
-				return $http.get('/api/recipes/random');
+			random : function() {
+				return $http.get('/api/recipes/random?t='+new Date().getTime());
 			},
 			getVideos : function(name) {
 				return $http.get('/api/recipes/videos/'+name);
