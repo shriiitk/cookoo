@@ -11,6 +11,7 @@ angular.module('recipeService', [])
 				return $http.get('/api/recipes/details/'+id);
 			},
 			random : function(id) {
+				console.log("calling random service with "+id);
 				return $http.get('/api/recipes/random');
 			},
 			getVideos : function(name) {
