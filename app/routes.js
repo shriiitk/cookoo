@@ -220,7 +220,8 @@ app.get('sitemap.xml', function(req, res) {
 });
 
 app.get('Robots.txt', function(req, res) {
-	res.sendfile('./Robots.txt');
+	res.type('text/plain');
+	res.sendfile('./public/Robots.txt');
 });
 
 app.get('*', function(req, res) {
