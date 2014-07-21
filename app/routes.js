@@ -214,10 +214,43 @@ app.post('/api/email/contactus', function(req, res) {
 	}
 });
 
+var generate_xml_sitemap = function (res) {
+	console.log("in generate method");
+	var q = Recipe.find({}).select('_id title').limit();
+	q.exec(function(err, recipes) {
+
+		// if there is an error retrieving, send the error. nothing after res.send(err) will execute
+		if (err){
+			console.log("Error",err);
+			res.sendfile('./public/sitemap.xml');
+		}
+		console.log(recipes.length);
+		var root_path = "http://what2cook.co.in/#!/recipe/";
+		var len = recipes.length;
+		var xml = '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
+		for(var i=0; i<len; i++){
+			//console.log(JSON.stringify(recipes));
+			xml += '<url>';
+			var url = root_path + recipes[i].title +'/'+ recipes[i]._id;
+			url = url.replace('&', '&amp;');
+			url = encodeURI(url);
+	        xml += '<loc>'+ url + '</loc>';
+	        //xml += '<lastmod>' + new Date() + '</lastmod>';
+	        xml += '<changefreq>monthly</changefreq>';
+	        xml += '</url>';
+		}
+		xml += '</urlset>';
+		res.header('Content-Type', 'application/xml');
+    	res.send(xml);  
+	});
+}
+
 // application -------------------------------------------------------------
+
 app.get('sitemap.xml', function(req, res) {
-	res.sendfile('./public/sitemap.xml');
-});
+	console.log("preparing xml");
+    generate_xml_sitemap(res); // get the dynamically generated XML sitemap
+})
 
 app.get('robots.txt', function(req, res) {
 	res.type('text/plain');
