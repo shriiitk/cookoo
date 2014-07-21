@@ -219,7 +219,7 @@ app.get('sitemap.xml', function(req, res) {
 	res.sendfile('./public/sitemap.xml');
 });
 
-app.get('Robots.txt', function(req, res) {
+app.get('robots.txt', function(req, res) {
 	res.type('text/plain');
 	res.sendfile('./public/robots.txt');
 });
