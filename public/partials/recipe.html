@@ -10,7 +10,7 @@
           <li class="text-center" ng-repeat="tag in recipe.tags"><a style="color:white;" target="_self" ng-click="triggerSearch($event)">{{ tag }}</a></li>
         </ul>
       </div>
-      <div><a href="https://www.google.com/?#q={{ recipe.title }} Recipe" target="_blank">Get {{ recipe.title }} Recipe</a></div>
+      <div><a href="https://www.google.com/search?q={{ recipe.title }} Recipe" target="_blank">Get {{ recipe.title }} Recipe</a></div>
     </div>
   </div>
   <div class="col-md-9">
