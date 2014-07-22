@@ -222,7 +222,7 @@ var generate_xml_sitemap = function (res) {
 		// if there is an error retrieving, send the error. nothing after res.send(err) will execute
 		if (err){
 			console.error("Error",err);
-			res.sendfile('./public/sitemap.xml');
+			res.send(err);
 		}
 		console.log(recipes.length);
 		var root_path = "http://what2cook.co.in/#!/recipe/";
@@ -234,7 +234,7 @@ var generate_xml_sitemap = function (res) {
 			var url = root_path + recipes[i].title +'/'+ recipes[i]._id;
 			url = url.replace('&', '&amp;');
 			url = encodeURI(url);
-	        xml += '<loc>'+ url + '/ </loc>';
+	        xml += '<loc>'+ url + '</loc>';
 	        //xml += '<lastmod>' + new Date() + '</lastmod>';
 	        xml += '<changefreq>monthly</changefreq>';
 	        xml += '</url>';
