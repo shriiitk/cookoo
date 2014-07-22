@@ -221,7 +221,7 @@ var generate_xml_sitemap = function (res) {
 
 		// if there is an error retrieving, send the error. nothing after res.send(err) will execute
 		if (err){
-			console.log("Error",err);
+			console.error("Error",err);
 			res.sendfile('./public/sitemap.xml');
 		}
 		console.log(recipes.length);
