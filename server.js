@@ -9,8 +9,15 @@ var port       = process.env.PORT || 8000;
 
 // configuration =================
 var database = require('./config/database');
-
-mongoose.connect(database.url); 	// connect to mongoDB database on modulus.io
+console.log("Connecting to "+database.url);
+mongoose.Promise = global.Promise;
+mongoose.connect(database.url, function(err) {
+    if (err) {
+    	console.error("error connecting DB");
+    	console.error(err);
+    	throw err;
+    }
+}); 	// connect to mongoDB database on modulus.io
 
 app.configure(function() {
 	// Here we require the prerender middleware that will handle requests from Search Engine crawlers

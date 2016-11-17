@@ -17,10 +17,10 @@ var recipeSchema = mongoose.Schema({
     createdOn: Date,
     modifiedOn: Date
 });
-
+/*
 // give our schema text search capabilities
 recipeSchema.plugin(textSearch);
-
+*/
 // add a text index to the tags array
 recipeSchema.index({
     title		: "text",
@@ -34,9 +34,8 @@ recipeSchema.index({
         instructions: 1,
         chef        : 1
     },
-    name: "RecipeTextIndexWithChef"
+    name: "RecipeTextIndex"
 });
-
 module.exports = mongoose.model('Recipe', recipeSchema);
 
 /*

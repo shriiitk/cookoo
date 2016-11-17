@@ -6,7 +6,7 @@
   "author": "Shashank",
   "dependencies": {
     "express": "~3.4.4",
-    "mongoose": "~3.6.2",
+    "mongoose": "4.6.8",
     "mongoose-text-search": "0.0.2",
     "nodemailer": "^0.7.0",
     "prerender-node": "latest",

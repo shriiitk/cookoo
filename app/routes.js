@@ -118,7 +118,7 @@ app.get('/api/tags/top/:count', function(req, res) {
 	// use mongoose to get all tags in the database
 	var limit = req.params.count;
 	// TODO: better top results query
-	var q = Tag.find({}).select('title').limit(limit);
+	var q = Tag.find({}).select('title').limit(parseInt(limit));
 	q.exec(function(err, tags) {
 
 		// if there is an error retrieving, send the error. nothing after res.send(err) will execute
@@ -145,17 +145,17 @@ app.get('/api/recipes/search', function(req, res) {
 	    limit: 32,
 	    project: "_id title tags"
 	}
-	Recipe.textSearch(q, options, function (err, output) {
-		if (err){
-			console.log(err);
-			res.send(err);
+	Recipe.find({$text: {$search: q}}, { score: { $meta: "textScore" }})
+		.sort({score:{$meta:"textScore"}})
+		.limit(options.limit)
+		.exec(function(err, output) {
+			if (err){
+				console.log(err);
+				res.send(err);
+			}
+			res.json(output);
 		}
-		var list = [];
-		for (var i = 0; i < output.results.length; i++) {
-			list.push(output.results[i].obj);
-		};
-		res.json(list);
-	});
+	);
 });
 
 app.post('/api/email/contactus', function(req, res) {
