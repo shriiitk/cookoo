@@ -10,7 +10,7 @@ var port       = process.env.PORT || 8000;
 // configuration =================
 var database = require('./config/database');
 console.log("Connecting to "+database.url);
-mongoose.Promise = global.Promise;
+mongoose.Promise = require('bluebird');
 mongoose.connect(database.url, function(err) {
     if (err) {
     	console.error("error connecting DB");
